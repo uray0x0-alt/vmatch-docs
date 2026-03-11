@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VMatch マニュアル β版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #dbeafe;
+    --primary-dark: #1d4ed8;
+    --leader: #7c3aed;
+    --leader-light: #ede9fe;
+    --member: #0891b2;
+    --member-light: #cffafe;
+    --bg: #ffffff;
+    --bg2: #f8fafc;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-light: #94a3b8;
+    --green: #059669;
+    --green-light: #d1fae5;
+    --yellow: #d97706;
+    --yellow-light: #fef3c7;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --nav-h: 60px;
+    --sidebar-w: 256px;
+    --font: 'Noto Sans JP', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    color: var(--text);
+    background: var(--bg);
+    font-size: 15px;
+    line-height: 1.75;
+  }
+
+  /* NAV */
+  .navbar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--nav-h);
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 28px;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 17px; font-weight: 700; color: var(--text);
+    text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 32px; height: 32px;
+    background: var(--primary);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px;
+  }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .nav-chip {
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 999px;
+    letter-spacing: 0.5px;
+  }
+  .nav-chip-beta { background: #fef9c3; color: #92400e; border: 1px solid #fde68a; }
+  .nav-chip-free { background: var(--primary-light); color: var(--primary); border: 1px solid #bfdbfe; }
+  .nav-ver { font-size: 12px; color: var(--text-light); font-family: var(--mono); }
+
+  /* LAYOUT */
+  .layout {
+    display: flex;
+    margin-top: var(--nav-h);
+    min-height: calc(100vh - var(--nav-h));
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: fixed;
+    top: var(--nav-h); left: 0;
+    width: var(--sidebar-w);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    padding: 20px 0 32px;
+  }
+  .sidebar::-webkit-scrollbar { width: 3px; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border); }
+
+  .sb-group { margin-bottom: 20px; }
+  .sb-group-title {
+    font-size: 10px; font-weight: 700;
+    letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--text-light);
+    padding: 0 20px;
+    margin-bottom: 6px;
+  }
+  .sb-link {
+    display: flex; align-items: center; gap: 9px;
+    padding: 7px 20px;
+    font-size: 13.5px; color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.15s;
+    border-left: 3px solid transparent;
+    line-height: 1.3;
+  }
+  .sb-link:hover { color: var(--text); background: white; }
+  .sb-link.active { color: var(--primary); font-weight: 700; border-left-color: var(--primary); background: var(--primary-light); }
+  .sb-link.leader.active { color: var(--leader); border-left-color: var(--leader); background: var(--leader-light); }
+  .sb-link.member.active { color: var(--member); border-left-color: var(--member); background: var(--member-light); }
+  .sb-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .sb-dot-leader { background: var(--leader); }
+  .sb-dot-member { background: var(--member); }
+  .sb-dot-both { background: var(--primary); }
+
+  /* MAIN */
+  .main {
+    margin-left: var(--sidebar-w);
+    padding: 44px 56px 80px;
+    max-width: 900px;
+    flex: 1;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0891b2 100%);
+    border-radius: 16px;
+    padding: 36px 40px;
+    margin-bottom: 36px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '🏐';
+    position: absolute; right: 32px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 90px; opacity: 0.1;
+    pointer-events: none;
+  }
+  .hero-eyebrow { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; }
+  .hero-chip { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; letter-spacing: 0.5px; }
+  .hero-chip-beta { background: rgba(255,255,255,0.2); color: white; }
+  .hero-chip-free { background: rgba(14,165,233,0.4); color: white; }
+  .hero-title { font-size: 26px; font-weight: 700; margin-bottom: 10px; }
+  .hero-desc { font-size: 14px; opacity: 0.85; line-height: 1.7; max-width: 520px; }
+
+  /* ROLE LEGEND */
+  .role-legend { display: flex; gap: 14px; margin-bottom: 32px; flex-wrap: wrap; }
+  .role-tag {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 10px;
+    font-size: 14px; font-weight: 700; border: 2px solid;
+  }
+  .role-tag-leader { background: var(--leader-light); color: var(--leader); border-color: #c4b5fd; }
+  .role-tag-member { background: var(--member-light); color: var(--member); border-color: #a5f3fc; }
+
+  /* HEADINGS */
+  h2 {
+    font-size: 20px; font-weight: 700;
+    color: var(--text);
+    margin: 52px 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    scroll-margin-top: calc(var(--nav-h) + 16px);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .h2-badge {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px;
+    background: var(--primary); color: white;
+    border-radius: 50%; font-size: 12px; font-weight: 800; flex-shrink: 0;
+  }
+  h3 { font-size: 16px; font-weight: 700; margin: 26px 0 10px; scroll-margin-top: calc(var(--nav-h) + 16px); }
+  p { margin-bottom: 14px; color: var(--text); }
+  .section-intro { font-size: 15px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.75; }
+
+  /* ROLE CARD */
+  .role-section { border-radius: 12px; border: 1.5px solid; margin: 12px 0 20px; overflow: hidden; }
+  .role-section-leader { border-color: #c4b5fd; }
+  .role-section-member { border-color: #a5f3fc; }
+  .role-section-both { border-color: var(--border); }
+  .role-header {
+    display: flex; align-items: center; gap: 9px;
+    padding: 11px 18px; font-size: 13px; font-weight: 700;
+  }
+  .role-header-leader { background: var(--leader-light); color: var(--leader); }
+  .role-header-member { background: var(--member-light); color: var(--member); }
+  .role-header-both { background: var(--bg2); color: var(--text-muted); }
+  .role-body { padding: 16px 20px; background: white; }
+  .role-body p:last-child { margin-bottom: 0; }
+
+  /* STEPS */
+  .steps { margin: 12px 0; }
+  .step-item { display: flex; gap: 14px; margin-bottom: 20px; position: relative; }
+  .step-item:not(:last-child)::before {
+    content: ''; position: absolute;
+    left: 14px; top: 32px; width: 2px;
+    height: calc(100% - 12px);
+    background: var(--border);
+  }
+  .step-num {
+    flex-shrink: 0; width: 30px; height: 30px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: white; margin-top: 3px;
+  }
+  .step-num-leader { background: var(--leader); }
+  .step-num-member { background: var(--member); }
+  .step-num-both { background: var(--primary); }
+  .step-content { flex: 1; padding-top: 4px; }
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .step-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
+  .step-desc p { color: var(--text-muted); margin-bottom: 5px; font-size: 14px; }
+  .step-desc p:last-child { margin-bottom: 0; }
+
+  /* CALLOUT */
+  .callout {
+    border-radius: 9px; padding: 13px 16px;
+    margin: 14px 0; display: flex; gap: 11px; align-items: flex-start;
+  }
+  .callout-icon { font-size: 16px; flex-shrink: 0; margin-top: 2px; }
+  .callout-body { flex: 1; font-size: 14px; line-height: 1.65; }
+  .callout-body strong { display: block; margin-bottom: 3px; font-size: 13px; }
+  .callout-info { background: #eff6ff; border-left: 4px solid var(--primary); }
+  .callout-info .callout-body strong { color: var(--primary); }
+  .callout-tip { background: var(--green-light); border-left: 4px solid var(--green); }
+  .callout-tip .callout-body strong { color: var(--green); }
+  .callout-warn { background: var(--yellow-light); border-left: 4px solid var(--yellow); }
+  .callout-warn .callout-body strong { color: var(--yellow); }
+
+  /* MATCH FLOW */
+  .match-flow { display: flex; align-items: stretch; margin: 20px 0; flex-wrap: wrap; gap: 6px; }
+  .mf-step {
+    flex: 1; min-width: 90px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 14px 10px;
+    background: white; border: 1.5px solid var(--border);
+    border-radius: 10px; transition: box-shadow 0.2s;
+  }
+  .mf-step:hover { box-shadow: 0 3px 12px rgba(0,0,0,0.07); }
+  .mf-step-icon { font-size: 22px; margin-bottom: 6px; }
+  .mf-step-label { font-size: 12px; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 5px; }
+  .mf-step-who { font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+  .mf-who-leader { background: var(--leader-light); color: var(--leader); }
+  .mf-who-member { background: var(--member-light); color: var(--member); }
+  .mf-who-both { background: var(--bg2); color: var(--text-muted); }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+  th {
+    background: var(--bg2); padding: 9px 14px;
+    text-align: left; font-size: 11px; font-weight: 700;
+    color: var(--text-muted); letter-spacing: 0.5px; text-transform: uppercase;
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg2); }
+
+  /* BADGE */
+  .badge {
+    display: inline-flex; align-items: center; gap: 3px;
+    padding: 2px 9px; border-radius: 999px;
+    font-size: 12px; font-weight: 600; white-space: nowrap;
+  }
+  .badge-leader { background: var(--leader-light); color: var(--leader); }
+  .badge-member { background: var(--member-light); color: var(--member); }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-gray { background: var(--bg2); color: var(--text-muted); border: 1px solid var(--border); }
+
+  code {
+    font-family: var(--mono);
+    background: var(--bg2); border: 1px solid var(--border);
+    padding: 1px 5px; border-radius: 4px;
+    font-size: 12.5px; color: #4338ca;
+  }
+
+  /* FOOTER */
+  footer {
+    margin-left: var(--sidebar-w);
+    padding: 22px 56px;
+    border-top: 1px solid var(--border);
+    font-size: 13px; color: var(--text-light);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  @media (max-width: 800px) {
+    .sidebar { display: none; }
+    .main { margin-left: 0; padding: 24px 20px 60px; }
+    footer { margin-left: 0; padding: 18px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-icon">🏐</div>
+    VMatch
+  </a>
+  <div class="nav-right">
+    <span class="nav-chip nav-chip-beta">β版</span>
+    <span class="nav-chip nav-chip-free">フリーマッチシーズン</span>
+    <span class="nav-ver">v22a</span>
+  </div>
+</nav>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <div class="sb-group">
+      <div class="sb-group-title">はじめに</div>
+      <a class="sb-link" href="#intro"><span class="sb-dot sb-dot-both"></span>VMatch とは</a>
+      <a class="sb-link" href="#overview"><span class="sb-dot sb-dot-both"></span>試合の全体像</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-title">準備（全員）</div>
+      <a class="sb-link" href="#register"><span class="sb-dot sb-dot-both"></span>登録・ログイン</a>
+      <a class="sb-link" href="#team"><span class="sb-dot sb-dot-both"></span>チームに参加する</a>
+      <a class="sb-link" href="#availability"><span class="sb-dot sb-dot-both"></span>予定を入力する</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-title">リーダー向け</div>
+      <a class="sb-link leader" href="#leader-request"><span class="sb-dot sb-dot-leader"></span>試合を申請する</a>
+      <a class="sb-link leader" href="#leader-schedule"><span class="sb-dot sb-dot-leader"></span>日程を調整する</a>
+      <a class="sb-link leader" href="#leader-report"><span class="sb-dot sb-dot-leader"></span>結果を報告する</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-title">メンバー向け</div>
+      <a class="sb-link member" href="#member-flow"><span class="sb-dot sb-dot-member"></span>メンバーの役割</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-title">その他</div>
+      <a class="sb-link" href="#rating"><span class="sb-dot sb-dot-both"></span>レートについて</a>
+      <a class="sb-link" href="#faq"><span class="sb-dot sb-dot-both"></span>Q&amp;A</a>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <div class="hero">
+      <div class="hero-eyebrow">
+        <span class="hero-chip hero-chip-beta">β版</span>
+        <span class="hero-chip hero-chip-free">フリーマッチシーズン</span>
+      </div>
+      <div class="hero-title">VMatch ユーザーマニュアル</div>
+      <div class="hero-desc">バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。このβ版ではフリーマッチシーズンのみ運用します。</div>
+    </div>
+
+    <div class="role-legend">
+      <div class="role-tag role-tag-leader"><span>👑</span>リーダー向け</div>
+      <div class="role-tag role-tag-member"><span>👤</span>メンバー向け</div>
+    </div>
+
+    <!-- INTRO -->
+    <h2 id="intro">VMatch とは</h2>
+    <p class="section-intro">VMatch は、バレーボールチーム同士のマッチング・日程調整・レート管理をまとめて行える Web サービスです。チームを作って仲間を集め、他チームと対戦しながら Elo レートを競います。</p>
+    <div class="callout callout-info">
+      <div class="callout-icon">ℹ️</div>
+      <div class="callout-body">
+        <strong>β版・フリーマッチシーズンについて</strong>
+        このβ版ではフリーマッチシーズンのみ運用します。チームリーダーが自由に試合を申請でき、レートが近い相手とシステムが自動でマッチングします。
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">試合の全体像</h2>
+    <p class="section-intro">VMatch での試合は以下の流れで進みます。各ステップで誰が操作するかを確認してください。</p>
+
+    <div class="match-flow">
+      <div class="mf-step">
+        <div class="mf-step-icon">📝</div>
+        <div class="mf-step-label">予定入力</div>
+        <div class="mf-step-who mf-who-both">全員</div>
+      </div>
+      <div class="mf-step">
+        <div class="mf-step-icon">⚡</div>
+        <div class="mf-step-label">試合申請</div>
+        <div class="mf-step-who mf-who-leader">リーダー</div>
+      </div>
+      <div class="mf-step">
+        <div class="mf-step-icon">🤝</div>
+        <div class="mf-step-label">自動マッチング</div>
+        <div class="mf-step-who mf-who-both">自動</div>
+      </div>
+      <div class="mf-step">
+        <div class="mf-step-icon">📅</div>
+        <div class="mf-step-label">日程調整</div>
+        <div class="mf-step-who mf-who-leader">リーダー</div>
+      </div>
+      <div class="mf-step">
+        <div class="mf-step-icon">🏐</div>
+        <div class="mf-step-label">試合実施</div>
+        <div class="mf-step-who mf-who-both">全員</div>
+      </div>
+      <div class="mf-step">
+        <div class="mf-step-icon">📊</div>
+        <div class="mf-step-label">結果報告</div>
+        <div class="mf-step-who mf-who-leader">リーダー</div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>ステップ</th><th>操作する人</th><th>内容</th></tr>
+      <tr><td>予定入力</td><td><span class="badge badge-member">👤 全員</span></td><td>空き時間をカレンダーに登録する</td></tr>
+      <tr><td>試合申請</td><td><span class="badge badge-leader">👑 リーダー</span></td><td>ダッシュボードから試合を申請する</td></tr>
+      <tr><td>自動マッチング</td><td><span class="badge badge-gray">⚙️ 自動</span></td><td>申請中チームとレートが近い相手を自動ペアリング</td></tr>
+      <tr><td>日程調整</td><td><span class="badge badge-leader">👑 リーダー</span></td><td>両チームリーダーが試合日時を確定する</td></tr>
+      <tr><td>試合実施</td><td><span class="badge badge-member">👤 全員</span></td><td>確定した日時に試合を行う</td></tr>
+      <tr><td>結果報告</td><td><span class="badge badge-leader">👑 リーダー</span></td><td>両チームリーダーがスコアを報告する</td></tr>
+    </table>
+
+    <!-- REGISTER -->
+    <h2 id="register">登録・ログイン</h2>
+
+    <div class="role-section role-section-both">
+      <div class="role-header role-header-both"><span>👤</span>リーダー・メンバー共通</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-both">1</div>
+            <div class="step-content">
+              <div class="step-title">サイトを開く</div>
+              <div class="step-desc">配布された VMatch の URL にブラウザでアクセスします。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-both">2</div>
+            <div class="step-content">
+              <div class="step-title">「新規登録」をクリック</div>
+              <div class="step-desc">ユーザー名（VRChat ID 推奨）とパスワードを入力して登録します。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-both">3</div>
+            <div class="step-content">
+              <div class="step-title">ログイン完了</div>
+              <div class="step-desc">登録後は自動でログインされます。次回からはログインページで ID・パスワードを入力してください。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>ユーザー名の変更</strong>
+            ログイン後のダッシュボードの「✏️ ユーザー名を変更」からいつでも変更できます。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEAM -->
+    <h2 id="team">チームに参加する</h2>
+
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>リーダー — チームを作成する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-leader">1</div>
+            <div class="step-content">
+              <div class="step-title">ダッシュボードの「チームを作成」をクリック</div>
+              <div class="step-desc">チーム名を入力して作成します。作成者が自動でリーダーになります。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">2</div>
+            <div class="step-content">
+              <div class="step-title">招待コードをメンバーに共有する</div>
+              <div class="step-desc">チーム詳細ページに 8 文字の招待コードが表示されます。メンバーに伝えましょう。最大 <strong>6 名</strong>まで参加できます。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-section role-section-member">
+      <div class="role-header role-header-member"><span>👤</span>メンバー — 招待コードで参加する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-member">1</div>
+            <div class="step-content">
+              <div class="step-title">ダッシュボードの「招待コードで参加」をクリック</div>
+              <div class="step-desc">リーダーから教えてもらった 8 文字のコードを入力して参加します。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>1 アカウント 1 チームのみ</strong>
+            すでに別のチームに所属している場合は参加できません。退団してから参加してください。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AVAILABILITY -->
+    <h2 id="availability">予定を入力する</h2>
+    <p class="section-intro">日程調整のベースになる重要なステップです。<strong>全メンバーが入力</strong>することで、より多くの候補日程が生成されます。ナビゲーションの「予定入力」から操作します。</p>
+
+    <div class="role-section role-section-both">
+      <div class="role-header role-header-both"><span>📅</span>リーダー・メンバー共通 — 空き時間を登録する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-both">1</div>
+            <div class="step-content">
+              <div class="step-title">「⚡ まとめて選択」エリアを使う</div>
+              <div class="step-desc">一マスずつクリックするより効率的です。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-both">2</div>
+            <div class="step-content">
+              <div class="step-title">曜日・日付範囲・時間帯を指定する</div>
+              <div class="step-desc">
+                <p>① <strong>曜日</strong>を選ぶ（例：土・日）— 省略すると全曜日が対象</p>
+                <p>② <strong>日付範囲</strong>を選ぶ（省略すると全期間が対象）</p>
+                <p>③ <strong>時間帯</strong>を選ぶ（例：19:00 〜 22:00）</p>
+              </div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-both">3</div>
+            <div class="step-content">
+              <div class="step-title">「✚ 選択に追加」→「保存する」</div>
+              <div class="step-desc">条件に合うコマがまとめてオンになります。最後に必ず「<strong>保存する</strong>」を押してください。押さないと保存されません。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>メンバーの入力状況を確認できます</strong>
+            ページ下部にチームメンバー全員の入力済みスロット数が表示されます。0 のメンバーには入力を促しましょう。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADER REQUEST -->
+    <h2 id="leader-request">
+      <span class="h2-badge">L</span>試合を申請する
+    </h2>
+    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。ダッシュボードから行います。</p>
+
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>リーダー — フリーマッチを申請する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-leader">1</div>
+            <div class="step-content">
+              <div class="step-title">ダッシュボードの「⚡ フリーマッチ」エリアを確認する</div>
+              <div class="step-desc">申請中チーム数が表示されています。進行中のマッチがない場合に申請ボタンが表示されます。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">2</div>
+            <div class="step-content">
+              <div class="step-title">「🎯 試合を申請する」をクリック</div>
+              <div class="step-desc">申請完了後、「⏳ 相手チームを待っています...」と表示されます。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">3</div>
+            <div class="step-content">
+              <div class="step-title">自動マッチングを待つ</div>
+              <div class="step-desc">他に申請中のチームがいると、<strong>レートが最も近いチームと自動でマッチング</strong>されます。成立すると Discord とアプリ内通知が届きます。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>申請をキャンセルするには</strong>
+            「キャンセル」ボタンで取り消せます。進行中のマッチがある間は新たに申請できません。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADER SCHEDULE -->
+    <h2 id="leader-schedule">
+      <span class="h2-badge">L</span>日程を調整する
+    </h2>
+    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。マッチング成立後、<strong>両チームのリーダーが協力</strong>して試合日時を確定します。マッチ詳細の「日程調整」から操作します。</p>
+
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 日程を確定する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-leader">1</div>
+            <div class="step-content">
+              <div class="step-title">「候補日程を生成する」をクリック</div>
+              <div class="step-desc">両チームメンバーの予定から共通の空き時間を自動抽出し、候補リストが表示されます。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">2</div>
+            <div class="step-content">
+              <div class="step-title">候補から 1 つを「この日程で提案する」</div>
+              <div class="step-desc">どちらのリーダーが先に提案しても構いません。提案した日程が相手チームに通知されます。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">3</div>
+            <div class="step-content">
+              <div class="step-title">相手リーダーが「承認する」</div>
+              <div class="step-desc">相手チームのリーダーが承認すると<strong>日程が確定</strong>します。Discord と通知が届きます。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-info">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-body">
+            <strong>候補が表示されない場合</strong>
+            チームメンバーの予定入力が不十分な可能性があります。<a href="#availability">「予定を入力する」</a>セクションを確認して、全員に入力をお願いしてください。
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>別の日程を希望する場合</strong>
+            提案内容が合わない場合は、マッチ詳細のチャット機能で相手リーダーと話し合ってから再提案してください。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEADER REPORT -->
+    <h2 id="leader-report">
+      <span class="h2-badge">L</span>結果を報告する
+    </h2>
+    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。試合終了後、<strong>両チームのリーダーが各自でスコアを報告</strong>します。マッチ詳細ページから操作します。</p>
+
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 結果を報告する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-leader">1</div>
+            <div class="step-content">
+              <div class="step-title">マッチ詳細ページを開く</div>
+              <div class="step-desc">ダッシュボードの進行中マッチからリンクをクリックします。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">2</div>
+            <div class="step-content">
+              <div class="step-title">自チームの視点でスコアを入力して「報告する」</div>
+              <div class="step-desc">「自チームの取得セット数」と「相手チームの取得セット数」を入力します。<br>例：自分が 2 セット取って勝った → 自チーム <strong>2</strong>、相手 <strong>0</strong> または <strong>1</strong></div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">3</div>
+            <div class="step-content">
+              <div class="step-title">両チームの報告が一致したら自動確定・レート更新</div>
+              <div class="step-desc">両リーダーの報告が一致した瞬間にマッチが確定し、Elo レートが自動更新されます。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>報告内容が食い違う場合</strong>
+            マッチ詳細のチャット機能で相手リーダーと話し合ってください。どちらのリーダーも「報告をリセット」してやり直せます。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEMBER FLOW -->
+    <h2 id="member-flow">メンバーの役割</h2>
+    <p class="section-intro">メンバーがすることはシンプルです。<strong>予定を入力して試合に参加する</strong>、この 2 点がメインの役割です。</p>
+
+    <div class="role-section role-section-member">
+      <div class="role-header role-header-member"><span>👤</span>メンバーがやること</div>
+      <div class="role-body">
+        <table>
+          <tr><th>タイミング</th><th>やること</th><th>場所</th></tr>
+          <tr><td>チームに参加したとき</td><td>空き時間を登録する</td><td>ナビ「予定入力」</td></tr>
+          <tr><td>予定が変わったとき</td><td>空き時間を更新する</td><td>ナビ「予定入力」</td></tr>
+          <tr><td>日程が確定したとき</td><td>通知を確認して試合に参加する</td><td>通知 🔔 / Discord</td></tr>
+        </table>
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>予定はこまめに更新を</strong>
+            予定が変わったら都度「予定入力」を更新してください。古いままだと日程候補がズレてしまいます。
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-section role-section-member">
+      <div class="role-header role-header-member"><span>👤</span>メンバーが「できないこと」（リーダーのみの操作）</div>
+      <div class="role-body">
+        <table>
+          <tr><th>操作</th><th>できる人</th></tr>
+          <tr><td>フリーマッチを申請・キャンセルする</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
+          <tr><td>日程候補を生成・提案・承認する</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
+          <tr><td>試合結果を報告・リセットする</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
+          <tr><td>チームメンバーの管理・招待コードの確認</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- RATING -->
+    <h2 id="rating">レートについて</h2>
+    <p class="section-intro">VMatch は <strong>Elo レーティング</strong>方式を採用しています。相手のレートとの差、スコア差に応じてレートが変動します。</p>
+
+    <table>
+      <tr><th>試合結果</th><th>レート変動</th></tr>
+      <tr><td>2 - 0 で勝利</td><td><span class="badge badge-green">▲ 大きく上昇</span></td></tr>
+      <tr><td>2 - 1 で勝利</td><td><span class="badge badge-green">▲ 上昇</span></td></tr>
+      <tr><td>2 - 1 で敗北</td><td><span class="badge badge-red">▼ 下降</span></td></tr>
+      <tr><td>2 - 0 で敗北</td><td><span class="badge badge-red">▼ 大きく下降</span></td></tr>
+    </table>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">ℹ️</div>
+      <div class="callout-body">
+        <strong>初期レートは 1500</strong>
+        シーズン開始時に全チームのレートが 1500 にリセットされます。現在のランキングはナビの「ランキング」から確認できます。
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq">Q&amp;A</h2>
+
+    <h3>Q. 申請したのにマッチングされない</h3>
+    <p>他に申請中のチームがいないとマッチングは成立しません。ダッシュボードのフリーマッチエリアで「申請中チーム数」を確認してください。他チームが申請するまでそのまま待機してください。</p>
+
+    <h3>Q. 日程候補が表示されない</h3>
+    <p>チームメンバーの予定入力が不十分な可能性があります。「予定入力」ページ下部でメンバーの入力状況を確認し、未入力のメンバーに声をかけてください。</p>
+
+    <h3>Q. 試合結果を間違えて報告してしまった</h3>
+    <p>マッチ詳細ページの「報告をリセット」で取り消してやり直せます。両チームがすでに報告済みで確定した後は変更できないため、管理者にご連絡ください。</p>
+
+    <h3>Q. チームを退団したい</h3>
+    <p>チーム詳細ページの「チームを退団する」から退団できます。進行中のマッチがある場合は退団できないことがあります。</p>
+
+    <h3>Q. パスワードを忘れた</h3>
+    <p>ログインページ下部の「パスワードをリセット」から再設定できます。</p>
+
+    <h3>Q. サイトを開くのに時間がかかる</h3>
+    <p>サーバーがスリープしている場合、最初のアクセスに 30 秒〜1 分かかることがあります。しばらく待ってから再度アクセスしてください。これは正常な動作です。</p>
+
+  </main>
+</div>
+
+<footer>
+  <span>VMatch ユーザーマニュアル — β版 フリーマッチシーズン対応</span>
+  <span>v22a</span>
+</footer>
+
+<script>
+const headings = document.querySelectorAll('h2[id]');
+const sbLinks = document.querySelectorAll('.sb-link');
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      sbLinks.forEach(l => l.classList.remove('active'));
+      const a = document.querySelector(`.sb-link[href="#${e.target.id}"]`);
+      if (a) a.classList.add('active');
+    }
+  });
+}, { rootMargin: '-60px 0px -75% 0px' });
+headings.forEach(h => io.observe(h));
+</script>
+</body>
+</html>
