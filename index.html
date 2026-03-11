@@ -306,7 +306,7 @@
 <nav class="navbar">
   <a class="nav-logo" href="#">
     <div class="nav-logo-icon">🏐</div>
-    VMatch
+    VMatch（仮）
   </a>
   <div class="nav-right">
     <span class="nav-chip nav-chip-beta">β版</span>
@@ -320,7 +320,7 @@
   <aside class="sidebar">
     <div class="sb-group">
       <div class="sb-group-title">はじめに</div>
-      <a class="sb-link" href="#intro"><span class="sb-dot sb-dot-both"></span>VMatch とは</a>
+      <a class="sb-link" href="#intro"><span class="sb-dot sb-dot-both"></span>VMatch（仮） とは</a>
       <a class="sb-link" href="#overview"><span class="sb-dot sb-dot-both"></span>試合の全体像</a>
     </div>
     <div class="sb-group">
@@ -331,9 +331,11 @@
     </div>
     <div class="sb-group">
       <div class="sb-group-title">リーダー向け</div>
+      <a class="sb-link leader" href="#leader-keymember"><span class="sb-dot sb-dot-leader"></span>キープレイヤーを設定する</a>
       <a class="sb-link leader" href="#leader-request"><span class="sb-dot sb-dot-leader"></span>試合を申請する</a>
       <a class="sb-link leader" href="#leader-schedule"><span class="sb-dot sb-dot-leader"></span>日程を調整する</a>
       <a class="sb-link leader" href="#leader-report"><span class="sb-dot sb-dot-leader"></span>結果を報告する</a>
+      <a class="sb-link leader" href="#leader-void"><span class="sb-dot sb-dot-leader"></span>試合を無効にする</a>
     </div>
     <div class="sb-group">
       <div class="sb-group-title">メンバー向け</div>
@@ -353,7 +355,7 @@
         <span class="hero-chip hero-chip-beta">β版</span>
         <span class="hero-chip hero-chip-free">フリーマッチシーズン</span>
       </div>
-      <div class="hero-title">VMatch ユーザーマニュアル</div>
+      <div class="hero-title">VMatch（仮） ユーザーマニュアル</div>
       <div class="hero-desc">バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。このβ版ではフリーマッチシーズンのみ運用します。</div>
     </div>
 
@@ -363,13 +365,27 @@
     </div>
 
     <!-- INTRO -->
-    <h2 id="intro">VMatch とは</h2>
-    <p class="section-intro">VMatch は、バレーボールチーム同士のマッチング・日程調整・レート管理をまとめて行える Web サービスです。チームを作って仲間を集め、他チームと対戦しながら Elo レートを競います。</p>
+    <h2 id="intro">VMatch（仮） とは</h2>
+    <p class="section-intro">VMatch（仮） は、バレーボールチーム同士のマッチング・日程調整・レート管理をまとめて行える Web サービスです。チームを作って仲間を集め、他チームと対戦しながら Elo レートを競います。</p>
+    <div class="callout callout-warn">
+      <div class="callout-icon">🤖</div>
+      <div class="callout-body">
+        <strong>AI コーディングによる作成について</strong>
+        本サービスのアプリ本体およびこのマニュアルは、AI を活用して作成されています。β版のため、動作に不具合や予期しない挙動が発生する可能性があります。お気づきの点はお気軽にご連絡ください。
+      </div>
+    </div>
     <div class="callout callout-info">
       <div class="callout-icon">ℹ️</div>
       <div class="callout-body">
         <strong>β版・フリーマッチシーズンについて</strong>
-        このβ版ではフリーマッチシーズンのみ運用します。チームリーダーが自由に試合を申請でき、レートが近い相手とシステムが自動でマッチングします。
+        このβ版ではフリーマッチシーズンのみ運用します。チームリーダーが自由に試合を申請でき、申請中のチームが 2 つ揃った時点で自動的にマッチングされます。
+      </div>
+    </div>
+    <div class="callout callout-warn">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>β版の運用について</strong>
+        β版は予告なく終了する可能性があります。また、参加チーム数が増えて運用が軌道に乗った段階で、通常シーズン（ウィークリーマッチ制）に切り替わる可能性があります。切り替え時は改めてご案内します。
       </div>
     </div>
 
@@ -414,7 +430,7 @@
       <tr><th>ステップ</th><th>操作する人</th><th>内容</th></tr>
       <tr><td>予定入力</td><td><span class="badge badge-member">👤 全員</span></td><td>空き時間をカレンダーに登録する</td></tr>
       <tr><td>試合申請</td><td><span class="badge badge-leader">👑 リーダー</span></td><td>ダッシュボードから試合を申請する</td></tr>
-      <tr><td>自動マッチング</td><td><span class="badge badge-gray">⚙️ 自動</span></td><td>申請中チームとレートが近い相手を自動ペアリング</td></tr>
+      <tr><td>自動マッチング</td><td><span class="badge badge-gray">⚙️ 自動</span></td><td>申請中チームが 2 つ揃った時点で自動ペアリング</td></tr>
       <tr><td>日程調整</td><td><span class="badge badge-leader">👑 リーダー</span></td><td>両チームリーダーが試合日時を確定する</td></tr>
       <tr><td>試合実施</td><td><span class="badge badge-member">👤 全員</span></td><td>確定した日時に試合を行う</td></tr>
       <tr><td>結果報告</td><td><span class="badge badge-leader">👑 リーダー</span></td><td>両チームリーダーがスコアを報告する</td></tr>
@@ -550,6 +566,57 @@
       </div>
     </div>
 
+    <!-- KEY PLAYER -->
+    <h2 id="leader-keymember">
+      <span class="h2-badge">L</span>キープレイヤーを設定する
+    </h2>
+    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。チームメンバーに「キープレイヤー」を設定することで、<strong>日程候補の優先順位に影響</strong>します。チーム編集ページ（チーム詳細 →「チームを編集」）から設定できます。</p>
+
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>リーダー — キープレイヤーを設定する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-leader">1</div>
+            <div class="step-content">
+              <div class="step-title">チーム詳細ページの「チームを編集」を開く</div>
+              <div class="step-desc">メンバー一覧にロール選択のドロップダウンが表示されます。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">2</div>
+            <div class="step-content">
+              <div class="step-title">各メンバーのロールを設定する</div>
+              <div class="step-desc">選択肢は 2 種類です。選択すると即座に保存されます。
+                <table style="margin-top:10px;">
+                  <tr><th>ロール</th><th>意味</th></tr>
+                  <tr><td>⭐ キープレイヤー</td><td>絶対に参加してほしい主力メンバー（セッターなど）</td></tr>
+                  <tr><td>サブ</td><td>通常メンバー（デフォルト）</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-info">
+          <div class="callout-icon">⭐</div>
+          <div class="callout-body">
+            <strong>キープレイヤーが日程候補に与える影響</strong>
+            日程候補は以下の優先順位で並びます。キープレイヤーを設定しておくことで、主力メンバーが参加できる日程が上位に表示されやすくなります。<br><br>
+            <strong>① 最優先</strong> — 両チーム 4 人以上 かつ 両チームのキープレイヤーが参加できるスロット<br>
+            <strong>② 次点</strong> — 両チーム 4 人以上だがキープレイヤーが揃わないスロット<br>
+            <strong>③ 最低優先</strong> — 参加人数が 4 人未満のスロット
+          </div>
+        </div>
+        <div class="callout callout-tip">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>キープレイヤーを設定しない場合は？</strong>
+            キープレイヤーが誰も設定されていないチームは「全員キープレイヤー扱い」として候補が生成されます。設定しなくても問題なく使えます。
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- LEADER REQUEST -->
     <h2 id="leader-request">
       <span class="h2-badge">L</span>試合を申請する
@@ -578,7 +645,7 @@
             <div class="step-num step-num-leader">3</div>
             <div class="step-content">
               <div class="step-title">自動マッチングを待つ</div>
-              <div class="step-desc">他に申請中のチームがいると、<strong>レートが最も近いチームと自動でマッチング</strong>されます。成立すると Discord とアプリ内通知が届きます。</div>
+              <div class="step-desc">他に申請中のチームがいると、<strong>先に申請していたチームと自動でマッチング</strong>されます。マッチングが成立すると Discord とアプリ内通知が届きます。</div>
             </div>
           </div>
         </div>
@@ -719,6 +786,48 @@
       </div>
     </div>
 
+    <!-- VOID MATCH -->
+    <h2 id="leader-void">
+      <span class="h2-badge">L</span>試合を無効にする
+    </h2>
+    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。試合が成立しなかった場合など、<strong>両チームのリーダーが合意すること</strong>で試合を無効にできます。マッチ詳細ページから操作します。</p>
+
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 試合を無効にする</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item">
+            <div class="step-num step-num-leader">1</div>
+            <div class="step-content">
+              <div class="step-title">マッチ詳細ページの「無効試合を申請する」をクリック</div>
+              <div class="step-desc">申請したチームの相手に「無効試合の申請が届いています」と通知が届きます。</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num step-num-leader">2</div>
+            <div class="step-content">
+              <div class="step-title">相手チームのリーダーも同様に申請する</div>
+              <div class="step-desc">相手リーダーがマッチ詳細ページから同じく「無効試合を申請する」をクリックすると、両者合意とみなされ<strong>マッチが無効に確定</strong>します。</div>
+            </div>
+          </div>
+        </div>
+        <div class="callout callout-info">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-body">
+            <strong>無効試合はレート変動なし</strong>
+            無効が確定してもレートは一切変動しません。両チームに通知が届き、マッチはステータス「無効」になります。
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>確定済みの試合は無効にできません</strong>
+            結果報告が両チーム一致して確定した後は無効申請できません。その場合は管理者にご連絡ください。
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- RATING -->
     <h2 id="rating">レートについて</h2>
     <p class="section-intro">VMatch は <strong>Elo レーティング</strong>方式を採用しています。相手のレートとの差、スコア差に応じてレートが変動します。</p>
@@ -764,7 +873,7 @@
 </div>
 
 <footer>
-  <span>VMatch ユーザーマニュアル — β版 フリーマッチシーズン対応</span>
+  <span>VMatch（仮） ユーザーマニュアル — β版 フリーマッチシーズン対応</span>
   <span>v22a</span>
 </footer>
 
