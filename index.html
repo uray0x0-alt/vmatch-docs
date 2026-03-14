@@ -33,7 +33,6 @@
     --red-light: #fee2e2;
     --nav-h: 60px;
     --sidebar-w: 260px;
-    --toc-w: 200px;
     --font: 'Noto Sans JP', sans-serif;
     --mono: 'JetBrains Mono', monospace;
   }
@@ -78,21 +77,9 @@
   .sb-dot-free { background: var(--free); }
   .sb-dot-normal { background: var(--normal); }
 
-  .main { margin-left: var(--sidebar-w); margin-right: var(--toc-w); padding: 44px 48px 80px; max-width: 860px; flex: 1; }
+  .main { margin-left: var(--sidebar-w); padding: 44px 48px 80px; max-width: 860px; flex: 1; }
 
   /* RIGHT TOC */
-  .toc {
-    position: fixed; top: var(--nav-h); right: 0;
-    width: var(--toc-w); height: calc(100vh - var(--nav-h));
-    overflow-y: auto; padding: 28px 16px;
-    border-left: 1px solid var(--border);
-  }
-  .toc::-webkit-scrollbar { width: 3px; }
-  .toc::-webkit-scrollbar-thumb { background: var(--border); }
-  .toc-title { font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--text-light); margin-bottom: 10px; }
-  .toc-link { display: block; font-size: 12px; color: var(--text-muted); text-decoration: none; padding: 4px 0 4px 10px; border-left: 2px solid var(--border); transition: all 0.15s; line-height: 1.4; margin-bottom: 2px; }
-  .toc-link:hover { color: var(--primary); border-left-color: var(--primary); }
-  .toc-link.sub { padding-left: 18px; font-size: 11px; }
 
   .hero {
     background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #0891b2 100%);
@@ -206,7 +193,6 @@
 
   footer { margin-left: var(--sidebar-w); padding: 22px 56px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-light); display: flex; justify-content: space-between; align-items: center; }
 
-  @media (max-width: 1100px) { .toc { display: none; } .main { margin-right: 0; } }
   @media (max-width: 800px) {
     .sidebar { display: none; }
     .main { margin-left: 0; padding: 24px 20px 60px; }
@@ -802,25 +788,6 @@
 
   </main>
 
-  <!-- RIGHT TOC -->
-  <aside class="toc">
-    <div class="toc-title">このページの見出し</div>
-    <a class="toc-link" href="#intro">VMatch（仮）とは</a>
-    <a class="toc-link" href="#modes">シーズンモードの違い</a>
-    <a class="toc-link" href="#overview">試合の全体像</a>
-    <a class="toc-link" href="#register">登録・ログイン</a>
-    <a class="toc-link" href="#team">チームに参加する</a>
-    <a class="toc-link" href="#availability">予定を入力する</a>
-    <a class="toc-link" href="#leader-keymember">キープレイヤーを設定する</a>
-    <a class="toc-link" href="#leader-request">試合を申請する</a>
-    <a class="toc-link" href="#leader-schedule">日程を調整する</a>
-    <a class="toc-link" href="#leader-report">結果を報告する</a>
-    <a class="toc-link" href="#leader-void">試合を無効にする</a>
-    <a class="toc-link" href="#member-flow">メンバーの役割</a>
-    <a class="toc-link" href="#rating">レートについて</a>
-    <a class="toc-link" href="#feedback">今後の変更予定・ご意見</a>
-    <a class="toc-link" href="#faq">Q&amp;A</a>
-  </aside>
 </div>
 
 <footer>
