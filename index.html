@@ -102,7 +102,7 @@
   .role-tag { display: flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; border: 2px solid; }
   .role-tag-leader { background: var(--leader-light); color: var(--leader); border-color: #c4b5fd; }
   .role-tag-member { background: var(--member-light); color: var(--member); border-color: #a5f3fc; }
-  .role-tag-free { background: var(--free-light); color: var(--free); border-color: #a5f3fc; }
+  .role-tag-rate { background: var(--free-light); color: var(--free); border-color: #a5f3fc; }
   .role-tag-normal { background: var(--normal-light); color: var(--normal); border-color: #6ee7b7; }
 
   /* MODE TABS */
@@ -114,11 +114,11 @@
 
   /* MODE SECTION */
   .mode-section { border-radius: 12px; border: 2px solid; margin: 12px 0 20px; overflow: hidden; }
-  .mode-section-free { border-color: #a5f3fc; }
+  .mode-section-rate { border-color: #a5f3fc; }
   .mode-section-normal { border-color: #6ee7b7; }
   .mode-section-both { border-color: var(--border); }
   .mode-header { display: flex; align-items: center; gap: 9px; padding: 11px 18px; font-size: 13px; font-weight: 700; }
-  .mode-header-free { background: var(--free-light); color: var(--free); }
+  .mode-header-rate { background: var(--free-light); color: var(--free); }
   .mode-header-normal { background: var(--normal-light); color: var(--normal); }
   .mode-header-both { background: var(--bg2); color: var(--text-muted); }
   .mode-body { padding: 16px 20px; background: white; }
@@ -188,7 +188,7 @@
   .badge { display: inline-flex; align-items: center; gap: 3px; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
   .badge-leader { background: var(--leader-light); color: var(--leader); }
   .badge-member { background: var(--member-light); color: var(--member); }
-  .badge-free { background: var(--free-light); color: var(--free); }
+  .badge-rate { background: var(--free-light); color: var(--free); }
   .badge-normal { background: var(--normal-light); color: var(--normal); }
   .badge-green { background: var(--green-light); color: var(--green); }
   .badge-red { background: var(--red-light); color: var(--red); }
@@ -214,7 +214,7 @@
   </a>
   <div class="nav-right">
     <span class="nav-chip nav-chip-beta">β版</span>
-    <span class="nav-ver">v22g</span>
+    <span class="nav-ver">v23w</span>
   </div>
 </nav>
 
@@ -235,7 +235,6 @@
     <div class="sb-group">
       <div class="sb-group-title">リーダー向け</div>
       <a class="sb-link leader" href="#leader-keymember"><span class="sb-dot sb-dot-leader"></span>キープレイヤーを設定する</a>
-      <a class="sb-link leader" href="#leader-entry"><span class="sb-dot sb-dot-leader"></span>ウィークリーに参加する</a>
       <a class="sb-link leader" href="#leader-request"><span class="sb-dot sb-dot-leader"></span>試合を申請する（フリー）</a>
       <a class="sb-link leader" href="#leader-schedule"><span class="sb-dot sb-dot-leader"></span>日程を調整する</a>
       <a class="sb-link leader" href="#leader-report"><span class="sb-dot sb-dot-leader"></span>結果を報告する</a>
@@ -258,14 +257,13 @@
     <div class="hero">
       <div class="hero-eyebrow"><span class="hero-chip hero-chip-beta">β版</span></div>
       <div class="hero-title">VMatch（仮） ユーザーマニュアル</div>
-      <div class="hero-desc">バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。フリーマッチシーズンと通常シーズン両方の使い方を説明します。</div>
+      <div class="hero-desc">バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。このβ版ではレートマッチシーズンのみ運用します。</div>
     </div>
 
     <div class="role-legend">
       <div class="role-tag role-tag-leader"><span>👑</span>リーダー向け</div>
       <div class="role-tag role-tag-member"><span>👤</span>メンバー向け</div>
-      <div class="role-tag role-tag-free"><span>⚡</span>フリーマッチ限定</div>
-      <div class="role-tag role-tag-normal"><span>🏆</span>通常シーズン限定</div>
+      <div class="role-tag role-tag-rate"><span>⚡</span>レートマッチ限定</div>
     </div>
 
     <!-- INTRO -->
@@ -280,31 +278,19 @@
     </div>
 
     <!-- MODES -->
-    <h2 id="modes">シーズンモードの違い</h2>
-    <p class="section-intro">VMatch には 2 種類のシーズンモードがあります。現在どちらのモードで運用しているかは管理者にご確認ください。</p>
-
-    <table>
-      <tr><th></th><th><span class="badge badge-free">⚡ フリーマッチ</span></th><th><span class="badge badge-normal">🏆 ウィークリーマッチ</span></th></tr>
-      <tr><td><strong>マッチの作り方</strong></td><td>リーダーが自由に申請</td><td>管理者が自動マッチング（隔週月曜）</td></tr>
-      <tr><td><strong>参加方法</strong></td><td>申請するだけ</td><td>エントリー受付期間中にリーダーが申請</td></tr>
-      <tr><td><strong>スコア計算</strong></td><td>Elo レート（1500 基準）</td><td>ポイント制（2-0勝ち：5pt / 2-1勝ち：3pt）</td></tr>
-      <tr><td><strong>試合期限</strong></td><td>なし</td><td>マッチ作成から <strong>2 週間</strong></td></tr>
-      <tr><td><strong>BYE（休み）</strong></td><td>なし</td><td>奇数チーム時に1チームが休み（3pt付与）</td></tr>
-      <tr><td><strong>途中参加</strong></td><td>いつでも</td><td>受付期間中のみ（最下位と同pt からスタート）</td></tr>
-      <tr><td><strong>リタイア</strong></td><td>なし</td><td>進行中マッチ消化後にリタイア確定</td></tr>
-    </table>
+    <h2 id="modes">レートマッチとは</h2>
+    <p class="section-intro">VMatch（仮）では現在<strong>レートマッチシーズン</strong>を運用しています。チームリーダーが自由に試合を申請し、申請が 2 つ揃った時点で自動的にマッチングされます。試合結果は Elo レーティングに反映されます。</p>
 
     <div class="callout callout-warn">
       <div class="callout-icon">⚠️</div>
       <div class="callout-body">
         <strong>β版・運用について</strong>
-        β版は予告なく終了する可能性があります。参加チーム数が増えて軌道に乗った段階で、フリーマッチからウィークリーマッチへ切り替わる可能性があります。切り替え時は改めてご案内します。
+        β版は予告なく終了する可能性があります。参加チーム数が増えて軌道に乗った段階で、ウィークリーマッチ（ポイント制）へ切り替わる可能性があります。切り替え時は改めてご案内します。
       </div>
     </div>
 
-    <!-- OVERVIEW -->
     <h2 id="overview">試合の全体像</h2>
-    <p class="section-intro">モードによってマッチが組まれる仕組みが異なりますが、日程調整・試合・結果報告の流れは共通です。</p>
+    <p class="section-intro">VMatch での試合は以下の流れで進みます。各ステップで誰が操作するかを確認してください。</p>
 
     <div class="match-flow">
       <div class="mf-step"><div class="mf-step-icon">📝</div><div class="mf-step-label">予定入力</div><div class="mf-step-who mf-who-both">全員</div></div>
@@ -314,17 +300,11 @@
       <div class="mf-step"><div class="mf-step-icon">📊</div><div class="mf-step-label">結果報告</div><div class="mf-step-who mf-who-leader">リーダー</div></div>
     </div>
 
-    <div class="mode-section mode-section-free">
-      <div class="mode-header mode-header-free"><span>⚡</span>フリーマッチ — マッチングの仕組み</div>
-      <div class="mode-body">
+    <div class="callout callout-info">
+      <div class="callout-icon">ℹ️</div>
+      <div class="callout-body">
+        <strong>マッチングの仕組み</strong>
         <p>リーダーがダッシュボードから「試合を申請」すると、もう 1 チームが申請した時点で<strong>自動的にマッチング</strong>が成立します。先着順でペアリングされます。期限はありません。</p>
-      </div>
-    </div>
-
-    <div class="mode-section mode-section-normal">
-      <div class="mode-header mode-header-normal"><span>🏆</span>ウィークリーマッチ — マッチングの仕組み</div>
-      <div class="mode-body">
-        <p>エントリーしたチームを対象に、<strong>隔週月曜 0 時</strong>に自動マッチングが実行されます。マッチ成立から <strong>2 週間以内</strong>に試合を実施してください。奇数チームの場合は 1 チームが BYE（休み）となり <strong>3pt</strong> が付与されます。期限超過は自動で無効になります（ポイント変動なし）。</p>
       </div>
     </div>
 
@@ -444,13 +424,6 @@
             </div>
           </div>
         </div>
-        <div class="callout callout-normal">
-          <div class="callout-icon">🏆</div>
-          <div class="callout-body">
-            <strong>通常シーズンでは特に重要</strong>
-            マッチ作成から 2 週間の期限があります。予定を最新に保つことで、早めに日程が確定しやすくなります。
-          </div>
-        </div>
       </div>
     </div>
 
@@ -501,60 +474,18 @@
       </div>
     </div>
 
-    <!-- WEEKLY ENTRY -->
-    <h2 id="leader-entry">
-      <span class="h2-badge">L</span>ウィークリーマッチに参加する <span class="badge badge-normal" style="font-size:12px;">🏆 ウィークリーのみ</span>
-    </h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。ウィークリーマッチに参加するには、受付期間中にエントリーが必要です。ダッシュボードから操作します。</p>
-
-    <div class="mode-section mode-section-normal">
-      <div class="mode-header mode-header-normal"><span>🏆</span>リーダー — ウィークリーマッチにエントリーする</div>
-      <div class="mode-body">
-        <div class="steps">
-          <div class="step-item">
-            <div class="step-num step-num-normal">1</div>
-            <div class="step-content">
-              <div class="step-title">ダッシュボードの「🏆 ウィークリーマッチ」エリアを確認する</div>
-              <div class="step-desc">受付期間中はエントリーボタンが表示されます。受付締切日時も確認してください。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-normal">2</div>
-            <div class="step-content">
-              <div class="step-title">「エントリーする」をクリック</div>
-              <div class="step-desc">エントリー完了後、隔週月曜のマッチングでチームが対象に含まれます。途中参加の場合は<strong>その時点の最下位と同じポイントからスタート</strong>します。</div>
-            </div>
-          </div>
-        </div>
-        <div class="callout callout-info">
-          <div class="callout-icon">ℹ️</div>
-          <div class="callout-body">
-            <strong>リタイアについて</strong>
-            参加後に途中でやめたい場合は「リタイアする」から申請できます。進行中のマッチがある場合はそのマッチを消化してからリタイアが確定します。
-          </div>
-        </div>
-        <div class="callout callout-warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <strong>受付期間を過ぎるとエントリーできません</strong>
-            受付締切を過ぎた後のエントリーはできません。次のシーズンをお待ちください。
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- LEADER REQUEST (FREE ONLY) -->
-    <h2 id="leader-request"><span class="h2-badge">L</span>試合を申請する <span class="badge badge-free" style="font-size:12px;">⚡ フリーマッチのみ</span></h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。通常シーズンでは管理者が自動でマッチを組むため、この操作は不要です。</p>
+    <h2 id="leader-request"><span class="h2-badge">L</span>試合を申請する</h2>
+    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。ダッシュボードから行います。</p>
 
-    <div class="mode-section mode-section-free">
-      <div class="mode-header mode-header-free"><span>⚡</span>フリーマッチ — リーダーが試合を申請する（ダッシュボードから）</div>
-      <div class="mode-body">
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader"><span>👑</span>リーダー — レートマッチを申請する（ダッシュボードから）</div>
+      <div class="role-body">
         <div class="steps">
           <div class="step-item">
             <div class="step-num step-num-free">1</div>
             <div class="step-content">
-              <div class="step-title">ダッシュボードの「⚡ フリーマッチ」エリアを確認する</div>
+              <div class="step-title">ダッシュボードの「⚡ レートマッチ」エリアを確認する</div>
               <div class="step-desc">申請中チーム数が表示されています。進行中のマッチがない場合に申請ボタンが表示されます。</div>
             </div>
           </div>
@@ -578,20 +509,6 @@
           <div class="callout-body">
             <strong>申請をキャンセルするには</strong>
             「キャンセル」ボタンで取り消せます。進行中のマッチがある間は新たに申請できません。
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mode-section mode-section-normal">
-      <div class="mode-header mode-header-normal"><span>🏆</span>ウィークリーマッチ — マッチングの通知を待つ</div>
-      <div class="mode-body">
-        <p>エントリー後は操作不要です。<strong>隔週月曜 0 時</strong>に自動マッチングが実行され、マッチが組まれると Discord とアプリ内通知が届きます。奇数チームの場合は 1 チームが BYE（休み）になります。</p>
-        <div class="callout callout-warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <strong>2 週間の期限に注意</strong>
-            マッチ作成から 2 週間以内に試合を実施してください。期限を過ぎると自動で無効（ポイント変動なし）になります。
           </div>
         </div>
       </div>
@@ -631,13 +548,6 @@
           <div class="callout-body">
             <strong>候補が表示されない場合</strong>
             チームメンバーの予定入力が不十分な可能性があります。<a href="#availability">「予定を入力する」</a>セクションを確認して、全員に入力をお願いしてください。
-          </div>
-        </div>
-        <div class="callout callout-normal">
-          <div class="callout-icon">🏆</div>
-          <div class="callout-body">
-            <strong>通常シーズンでは期限内に確定を</strong>
-            マッチ作成から 2 週間の期限があります。なるべく早めに日程を確定させましょう。
           </div>
         </div>
       </div>
@@ -708,7 +618,7 @@
           <div class="callout-icon">ℹ️</div>
           <div class="callout-body">
             <strong>無効試合はレート変動なし</strong>
-            無効が確定してもレートは一切変動しません。通常シーズンでは期限超過による自動無効も同様です。
+            無効が確定してもレートは一切変動しません。
           </div>
         </div>
         <div class="callout callout-warn">
@@ -733,13 +643,6 @@
           <tr><td>予定が変わったとき</td><td>空き時間を更新する</td><td>ナビ「予定入力」</td></tr>
           <tr><td>日程が確定したとき</td><td>通知を確認して試合に参加する</td><td>通知 🔔 / Discord</td></tr>
         </table>
-        <div class="callout callout-normal">
-          <div class="callout-icon">🏆</div>
-          <div class="callout-body">
-            <strong>通常シーズンでは特に予定更新が大事</strong>
-            2 週間の期限があるため、予定を常に最新にしておくことで日程候補が早く出やすくなります。
-          </div>
-        </div>
       </div>
     </div>
     <div class="role-section role-section-member">
@@ -747,7 +650,7 @@
       <div class="role-body">
         <table>
           <tr><th>操作</th><th>できる人</th></tr>
-          <tr><td>フリーマッチを申請・キャンセルする</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
+          <tr><td>レートマッチを申請・キャンセルする</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
           <tr><td>日程候補を生成・承認する</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
           <tr><td>試合結果を報告・リセットする</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
           <tr><td>チームメンバーの管理・招待コードの確認</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
@@ -757,40 +660,20 @@
 
     <!-- RATING -->
     <h2 id="rating">レートについて</h2>
-    <p class="section-intro">モードによってスコアの計算方式が異なります。</p>
+    <p class="section-intro">VMatch（仮）は <strong>Elo レーティング</strong>方式を採用しています。相手のレートとスコア差に応じてレートが変動します。初期レートは <strong>1500</strong> です。</p>
 
-    <div class="mode-section mode-section-free">
-      <div class="mode-header mode-header-free"><span>⚡</span>フリーマッチ — Elo レーティング</div>
-      <div class="mode-body">
-        <p>相手のレートとスコア差に応じてレートが変動します。初期レートは <strong>1500</strong> です。</p>
-        <table>
-          <tr><th>試合結果</th><th>レート変動</th></tr>
-          <tr><td>2 - 0 で勝利</td><td><span class="badge badge-green">▲ 大きく上昇</span></td></tr>
-          <tr><td>2 - 1 で勝利</td><td><span class="badge badge-green">▲ 上昇</span></td></tr>
-          <tr><td>2 - 1 で敗北</td><td><span class="badge badge-red">▼ 下降</span></td></tr>
-          <tr><td>2 - 0 で敗北</td><td><span class="badge badge-red">▼ 大きく下降</span></td></tr>
-        </table>
-      </div>
-    </div>
-
-    <div class="mode-section mode-section-normal">
-      <div class="mode-header mode-header-normal"><span>🏆</span>ウィークリーマッチ — ポイント制</div>
-      <div class="mode-body">
-        <p>Elo レートは変動せず、試合結果に応じたポイントで順位を競います。</p>
-        <table>
-          <tr><th>試合結果</th><th>勝ちチーム</th><th>負けチーム</th></tr>
-          <tr><td>2 - 0</td><td><span class="badge badge-green">+5pt</span></td><td><span class="badge badge-gray">+0pt</span></td></tr>
-          <tr><td>2 - 1</td><td><span class="badge badge-green">+3pt</span></td><td><span class="badge badge-gray">+1pt</span></td></tr>
-          <tr><td>BYE（休み）</td><td colspan="2"><span class="badge badge-normal">+3pt</span>（自動付与）</td></tr>
-        </table>
-      </div>
-    </div>
-
+    <table>
+      <tr><th>試合結果</th><th>レート変動</th></tr>
+      <tr><td>2 - 0 で勝利</td><td><span class="badge badge-green">▲ 大きく上昇</span></td></tr>
+      <tr><td>2 - 1 で勝利</td><td><span class="badge badge-green">▲ 上昇</span></td></tr>
+      <tr><td>2 - 1 で敗北</td><td><span class="badge badge-red">▼ 下降</span></td></tr>
+      <tr><td>2 - 0 で敗北</td><td><span class="badge badge-red">▼ 大きく下降</span></td></tr>
+    </table>
     <div class="callout callout-info">
       <div class="callout-icon">ℹ️</div>
       <div class="callout-body">
         <strong>ランキングの確認</strong>
-        現在のランキングはナビの「ランキング」から確認できます。フリーマッチはレート順、ウィークリーマッチはポイント順で表示されます。
+        現在のランキングはナビの「ランキング」から確認できます。レート順で表示されます。
       </div>
     </div>
 
@@ -815,35 +698,16 @@
       </tr>
       <tr>
         <td><strong>シーズンモード</strong></td>
-        <td>フリーマッチシーズン（β版）</td>
-        <td>フリーマッチとウィークリーマッチ、どちらの仕様が使いやすいか</td>
-      </tr>
-      <tr>
-        <td><strong>ウィークリーのマッチング頻度</strong></td>
-        <td>隔週月曜 0 時に自動実行</td>
-        <td>隔週は多い・少ない？毎週の方がいい？</td>
-      </tr>
-      <tr>
-        <td><strong>ウィークリー中の練習試合</strong></td>
-        <td>未実装</td>
-        <td>ウィークリー中もフリーマッチ形式で練習試合を組める機能が必要か</td>
+        <td>レートマッチシーズン（β版）</td>
+        <td>ウィークリーマッチ（ポイント制）への移行についてご意見ください</td>
       </tr>
     </table>
 
     <!-- FAQ -->
     <h2 id="faq">Q&amp;A</h2>
 
-    <h3>Q. フリーマッチで申請したのにマッチングされない</h3>
-    <p>他に申請中のチームがいないとマッチングは成立しません。ダッシュボードのフリーマッチエリアで「申請中チーム数」を確認し、他チームが申請するまで待機してください。</p>
-
-    <h3>Q. 通常シーズンでマッチが組まれない</h3>
-    <p>マッチングは隔週月曜 0 時に実行されます。タイミングによってはまだ実行前の場合があります。次の月曜 0 時まで待ってみてください。</p>
-
-    <h3>Q. ウィークリーマッチのマッチの期限が切れてしまった</h3>
-    <p>期限切れのマッチは自動で無効（ポイント変動なし）になります。次のマッチング実行（翌月曜 0 時）で新しいマッチが組まれます。</p>
-
-    <h3>Q. ウィークリーマッチをリタイアしたい</h3>
-    <p>ダッシュボードの「リタイアする」から申請できます。進行中のマッチがある場合はそのマッチを消化してからリタイアが確定します。</p>
+    <h3>Q. レートマッチで申請したのにマッチングされない</h3>
+    <p>他に申請中のチームがいないとマッチングは成立しません。ダッシュボードのレートマッチエリアで「申請中チーム数」を確認し、他チームが申請するまで待機してください。</p>
 
     <h3>Q. 日程候補が表示されない</h3>
     <p>チームメンバーの予定入力が不十分な可能性があります。「予定入力」ページ下部でメンバーの入力状況を確認し、未入力のメンバーに声をかけてください。</p>
@@ -865,8 +729,8 @@
 </div>
 
 <footer>
-  <span>VMatch（仮） ユーザーマニュアル — フリーマッチ・ウィークリーマッチ対応版</span>
-  <span>v23l</span>
+  <span>VMatch（仮） ユーザーマニュアル — レートマッチシーズン対応</span>
+  <span>v23w</span>
 </footer>
 
 <script>
