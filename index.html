@@ -214,7 +214,7 @@
   </a>
   <div class="nav-right">
     <span class="nav-chip nav-chip-beta">β版</span>
-    <span class="nav-ver">v23w</span>
+    <span class="nav-ver">v27j</span>
   </div>
 </nav>
 
@@ -230,6 +230,7 @@
       <div class="sb-group-title">準備（全員）</div>
       <a class="sb-link" href="#register"><span class="sb-dot sb-dot-both"></span>登録・ログイン</a>
       <a class="sb-link" href="#team"><span class="sb-dot sb-dot-both"></span>チームに参加する</a>
+      <a class="sb-link" href="#dashboard"><span class="sb-dot sb-dot-both"></span>ダッシュボード</a>
       <a class="sb-link" href="#availability"><span class="sb-dot sb-dot-both"></span>予定を入力する</a>
     </div>
     <div class="sb-group">
@@ -248,6 +249,8 @@
       <div class="sb-group-title">その他</div>
       <a class="sb-link" href="#rating"><span class="sb-dot sb-dot-both"></span>レートについて</a>
       <a class="sb-link" href="#feedback"><span class="sb-dot sb-dot-both"></span>今後の変更予定・ご意見</a>
+      <a class="sb-link" href="#terms"><span class="sb-dot sb-dot-both"></span>利用規約・プライバシーポリシー</a>
+      <a class="sb-link" href="#terms"><span class="sb-dot sb-dot-both"></span>利用規約・プライバシーポリシー</a>
       <a class="sb-link" href="#faq"><span class="sb-dot sb-dot-both"></span>Q&amp;A</a>
     </div>
   </aside>
@@ -257,7 +260,7 @@
     <div class="hero">
       <div class="hero-eyebrow"><span class="hero-chip hero-chip-beta">β版</span></div>
       <div class="hero-title">VMatch（仮） ユーザーマニュアル</div>
-      <div class="hero-desc">バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。このβ版ではレートマッチシーズンのみ運用します。</div>
+      <div class="hero-desc">バレーボールチームのマッチング・日程調整・スコア管理を行う Web サービスです。バレーボールチームのマッチング・日程調整・結果管理を行う Web サービスです。このβ版ではレートマッチシーズンを運用しています。</div>
     </div>
 
     <div class="role-legend">
@@ -270,22 +273,22 @@
     <h2 id="intro">VMatch（仮）とは</h2>
     <p class="section-intro">VMatch（仮）は、バレーボールチーム同士のマッチング・日程調整・レート管理をまとめて行える Web サービスです。チームを作って仲間を集め、他チームと対戦しながら Elo レートを競います。</p>
     <div class="callout callout-warn">
-      <div class="callout-icon">🤖</div>
+      <div class="callout-icon">⚠️</div>
       <div class="callout-body">
-        <strong>AI コーディングによる作成について</strong>
-        本サービスのアプリ本体およびこのマニュアルは、AI を活用して作成されています。不具合や予期しない挙動が発生する可能性があります。お気づきの点はお気軽にご連絡ください。
+        <strong>β版・運用について</strong>
+        β版は予告なく終了する可能性があります。参加チーム数が増えて軌道に乗った段階でウィークリーマッチ（ポイント制）へ切り替わる可能性があります。切り替え時は改めてご案内します。
       </div>
     </div>
 
     <!-- MODES -->
+
     <h2 id="modes">レートマッチとは</h2>
     <p class="section-intro">VMatch（仮）では現在<strong>レートマッチシーズン</strong>を運用しています。チームリーダーが自由に試合を申請し、申請が 2 つ揃った時点で自動的にマッチングされます。試合結果は Elo レーティングに反映されます。</p>
-
-    <div class="callout callout-warn">
-      <div class="callout-icon">⚠️</div>
+    <div class="callout callout-info">
+      <div class="callout-icon">🚧</div>
       <div class="callout-body">
-        <strong>β版・運用について</strong>
-        β版は予告なく終了する可能性があります。参加チーム数が増えて軌道に乗った段階で、ウィークリーマッチ（ポイント制）へ切り替わる可能性があります。切り替え時は改めてご案内します。
+        <strong>ウィークリーマッチ — Coming Soon</strong>
+        ポイント制のリーグ戦モードを現在開発中です。詳細は準備が整い次第お知らせします。
       </div>
     </div>
 
@@ -294,17 +297,17 @@
 
     <div class="match-flow">
       <div class="mf-step"><div class="mf-step-icon">📝</div><div class="mf-step-label">予定入力</div><div class="mf-step-who mf-who-both">全員</div></div>
-      <div class="mf-step"><div class="mf-step-icon">🤝</div><div class="mf-step-label">マッチング</div><div class="mf-step-who mf-who-both">自動</div></div>
+      <div class="mf-step"><div class="mf-step-icon">⚡</div><div class="mf-step-label">試合申請</div><div class="mf-step-who mf-who-leader">リーダー</div></div>
+      <div class="mf-step"><div class="mf-step-icon">🤝</div><div class="mf-step-label">自動マッチング</div><div class="mf-step-who mf-who-both">自動</div></div>
       <div class="mf-step"><div class="mf-step-icon">📅</div><div class="mf-step-label">日程調整</div><div class="mf-step-who mf-who-leader">リーダー</div></div>
       <div class="mf-step"><div class="mf-step-icon">🏐</div><div class="mf-step-label">試合実施</div><div class="mf-step-who mf-who-both">全員</div></div>
       <div class="mf-step"><div class="mf-step-icon">📊</div><div class="mf-step-label">結果報告</div><div class="mf-step-who mf-who-leader">リーダー</div></div>
     </div>
-
     <div class="callout callout-info">
       <div class="callout-icon">ℹ️</div>
       <div class="callout-body">
         <strong>マッチングの仕組み</strong>
-        <p>リーダーがダッシュボードから「試合を申請」すると、もう 1 チームが申請した時点で<strong>自動的にマッチング</strong>が成立します。先着順でペアリングされます。期限はありません。</p>
+        リーダーがレートマッチページから「対戦を募集する」を押すと、もう 1 チームが申請した時点で<strong>先着でマッチング</strong>が成立します。期限はありません。
       </div>
     </div>
 
@@ -391,6 +394,39 @@
       </div>
     </div>
 
+    <!-- DASHBOARD -->
+    <h2 id="dashboard">ダッシュボード</h2>
+    <p class="m-intro">ログイン後のトップページです。やることリスト・チーム統計・各モードへのリンクが確認できます。</p>
+
+    <div class="m-role-section m-role-section-both">
+      <div class="m-role-header m-role-header-both"><span>📋</span>やることリスト</div>
+      <div class="m-role-body">
+        <p>ダッシュボード上部に「やることリスト」が表示されます。色とアイコンで現在の状況が一目でわかります。</p>
+        <table>
+          <tr><th>表示</th><th>意味</th><th>主な例</th></tr>
+          <tr><td><strong style="color:#f06292;">🔴 対応が必要です</strong></td><td>急ぎの対応が必要</td><td>予定未入力・日程選択待ち・結果報告待ち・報告不一致</td></tr>
+          <tr><td><strong style="color:var(--yellow);">🟡 次のステップへ</strong></td><td>アクションを促す通知</td><td>試合申請できる状態・日程候補を検索してください</td></tr>
+          <tr><td><strong style="color:var(--accent);">🔵 試合が決まりました</strong></td><td>日程確定の通知</td><td>日程確定済み・試合参加の確認を</td></tr>
+          <tr><td><strong style="color:var(--green);">🟢 対応済み — 待機中</strong></td><td>自分の対応は完了</td><td>相手の日程選択待ち・相手の報告待ち</td></tr>
+          <tr><td><strong>💤 やることがありません</strong></td><td>特に対応不要</td><td>申請中・リーダー待ち</td></tr>
+        </table>
+        <div class="m-callout m-callout-tip"><div class="m-callout-icon">💡</div><div class="m-callout-body"><strong>ボタンが表示される場合</strong>やることリストに「確認する →」「入力する →」などのボタンが表示されることがあります。クリックすると該当ページへ直接移動できます。</div></div>
+      </div>
+    </div>
+
+    <div class="m-role-section m-role-section-both">
+      <div class="m-role-header m-role-header-both"><span>🔗</span>クイックリンク</div>
+      <div class="m-role-body">
+        <p>やることリストの下にクイックリンクカードが並んでいます。各モードのページや予定入力へすぐ移動できます。</p>
+        <table>
+          <tr><th>カード</th><th>移動先</th></tr>
+          <tr><td>⚡ レートマッチ</td><td>レートマッチページ（申請・試合一覧）</td></tr>
+          <tr><td>🏆 ウィークリーマッチ</td><td>ウィークリーマッチページ（準備中）</td></tr>
+          <tr><td>🕐 予定入力</td><td>予定入力ページ（直近14日の入力状況も表示）</td></tr>
+        </table>
+      </div>
+    </div>
+
     <!-- AVAILABILITY -->
     <h2 id="availability">予定を入力する</h2>
     <p class="section-intro">日程調整のベースになる重要なステップです。<strong>全メンバーが入力</strong>することで、より多くの候補日程が生成されます。ナビゲーションの「予定入力」から操作します。</p>
@@ -471,6 +507,8 @@
             誰もキープレイヤーに設定されていないチームは「全員キープレイヤー扱い」として候補が生成されます。
           </div>
         </div>
+        <div class="m-callout m-callout-tip"><div class="m-callout-icon">🖼️</div><div class="m-callout-body"><strong>チームロゴを設定する</strong>「チームを編集」ページの下部からチームロゴ画像をアップロードできます。対応形式は PNG / JPG / GIF / WebP（3MB以内）です。</div></div>
+
       </div>
     </div>
 
@@ -517,6 +555,14 @@
     <!-- LEADER SCHEDULE -->
     <h2 id="leader-schedule"><span class="h2-badge">L</span>日程を調整する</h2>
     <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。マッチング成立後、<strong>両チームのリーダーが協力</strong>して試合日時を確定します。マッチ詳細の「日程調整」から操作します。</p>
+
+    <div class="callout callout-info">
+      <div class="callout-icon">📊</div>
+      <div class="callout-body">
+        <strong>マッチ詳細のステータスバー</strong>
+        マッチ詳細ページ上部に現在の進行状況が表示されます。日程調整中・日程確定済み・結果報告待ち・報告内容不一致などが一目でわかります。
+      </div>
+    </div>
     <div class="role-section role-section-leader">
       <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 日程を確定する</div>
       <div class="role-body">
@@ -658,10 +704,28 @@
       </div>
     </div>
 
+    <!-- TERMS -->
+    <h2 id="terms">利用規約・プライバシーポリシー</h2>
+    <p class="m-intro">ナビゲーションの「利用規約」（<code>/terms</code>）から確認できます。利用開始時点で規約に同意したものとみなされますので、必ずご一読ください。</p>
+    <div class="m-role-section m-role-section-both">
+      <div class="m-role-header m-role-header-both"><span>📜</span>主な規約内容</div>
+      <div class="m-role-body">
+        <table>
+          <tr><th>項目</th><th>内容</th></tr>
+          <tr><td>荒らし・不正行為</td><td>全面禁止。悪意ある行為には無視で対応</td></tr>
+          <tr><td>なりすまし・虚偽登録</td><td>禁止</td></tr>
+          <tr><td>談合・自作自演</td><td>対戦目的でないレート・ポイント操作は全面禁止</td></tr>
+          <tr><td>チームロゴ画像</td><td>自身が権利を持つもの、または使用許諾を得たもののみアップロード可</td></tr>
+          <tr><td>不適切なコンテンツ</td><td>宗教・アダルト等の青少年に悪影響を及ぼす表現・画像は禁止</td></tr>
+          <tr><td>規約違反への対応</td><td>機能制限・アカウント停止・アクセス拒否の場合あり</td></tr>
+        </table>
+        <div class="m-callout m-callout-info"><div class="m-callout-icon">ℹ️</div><div class="m-callout-body"><strong>免責事項</strong>当サービスは個人運営のため、24時間の稼働やサービスの継続を保証しません。生じたトラブル・データ消失・損害に対しても責任を負いません。</div></div>
+      </div>
+    </div>
+
     <!-- RATING -->
     <h2 id="rating">レートについて</h2>
     <p class="section-intro">VMatch（仮）は <strong>Elo レーティング</strong>方式を採用しています。相手のレートとスコア差に応じてレートが変動します。初期レートは <strong>1500</strong> です。</p>
-
     <table>
       <tr><th>試合結果</th><th>レート変動</th></tr>
       <tr><td>2 - 0 で勝利</td><td><span class="badge badge-green">▲ 大きく上昇</span></td></tr>
@@ -673,11 +737,11 @@
       <div class="callout-icon">ℹ️</div>
       <div class="callout-body">
         <strong>ランキングの確認</strong>
-        現在のランキングはナビの「ランキング」から確認できます。レート順で表示されます。
+        ナビの「ランキング」から確認できます。レート順で表示されます。
       </div>
     </div>
 
-    <!-- FEEDBACK -->
+        <!-- FEEDBACK -->
     <h2 id="feedback">今後の変更予定・ご意見</h2>
     <p class="section-intro">VMatch（仮）はまだ開発途中です。以下の仕様については現在検討中であり、ユーザーの皆さんからのご意見をもとに決定していく予定です。そのほか使ってみて気になったことや要望があればぜひお聞かせください。</p>
 
@@ -730,7 +794,7 @@
 
 <footer>
   <span>VMatch（仮） ユーザーマニュアル — レートマッチシーズン対応</span>
-  <span>v23w</span>
+  <span>v27j</span>
 </footer>
 
 <script>
