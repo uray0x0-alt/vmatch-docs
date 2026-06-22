@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VMatch（仮） マニュアル</title>
+<title>VMATCH マニュアル</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
@@ -77,6 +77,7 @@
   .sb-link.normal-s.active { color: var(--normal); border-left-color: var(--normal); background: var(--normal-light); }
   .sb-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .sb-dot-leader { background: var(--leader); }
+  .sb-dot-sub { background: #d97706; }
   .sb-dot-member { background: var(--member); }
   .sb-dot-both { background: var(--primary); }
   .sb-dot-free { background: var(--free); }
@@ -125,7 +126,6 @@
   .mode-body p:last-child { margin-bottom: 0; }
 
   h2 { font-size: 20px; font-weight: 700; color: var(--text); margin: 52px 0 14px; padding-bottom: 10px; border-bottom: 2px solid var(--border); scroll-margin-top: calc(var(--nav-h) + 16px); display: flex; align-items: center; gap: 10px; }
-  .h2-badge { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; background: var(--primary); color: white; border-radius: 50%; font-size: 12px; font-weight: 800; flex-shrink: 0; }
   h3 { font-size: 16px; font-weight: 700; margin: 26px 0 10px; scroll-margin-top: calc(var(--nav-h) + 16px); }
   p { margin-bottom: 14px; color: var(--text); }
   .section-intro { font-size: 15px; color: var(--text-muted); margin-bottom: 18px; line-height: 1.75; }
@@ -213,7 +213,7 @@
 <nav class="navbar">
   <a class="nav-logo" href="#">
     <div class="nav-logo-icon">🏐</div>
-    VMatch（仮）
+    VMATCH
   </a>
   <div class="nav-right">
     <span class="nav-chip nav-chip-beta">β版</span>
@@ -225,8 +225,8 @@
   <aside class="sidebar">
     <div class="sb-group">
       <div class="sb-group-title">はじめに</div>
-      <a class="sb-link" href="#intro"><span class="sb-dot sb-dot-both"></span>VMatch（仮）とは</a>
-      <a class="sb-link" href="#modes"><span class="sb-dot sb-dot-both"></span>シーズンモードの違い</a>
+      <a class="sb-link" href="#intro"><span class="sb-dot sb-dot-both"></span>VMATCHとは</a>
+      <a class="sb-link" href="#modes"><span class="sb-dot sb-dot-both"></span>2つのモードについて</a>
       <a class="sb-link" href="#overview"><span class="sb-dot sb-dot-both"></span>試合の全体像</a>
     </div>
     <div class="sb-group">
@@ -237,13 +237,16 @@
       <a class="sb-link" href="#availability"><span class="sb-dot sb-dot-both"></span>予定を入力する</a>
     </div>
     <div class="sb-group">
-      <div class="sb-group-title">リーダー向け</div>
-      <a class="sb-link leader" href="#leader-entry"><span class="sb-dot sb-dot-leader"></span>ウィークリーに参加する</a>
-      <a class="sb-link leader" href="#leader-keymember"><span class="sb-dot sb-dot-leader"></span>キープレイヤーを設定する</a>
-      <a class="sb-link leader" href="#leader-request"><span class="sb-dot sb-dot-leader"></span>試合を申請する（フリー）</a>
-      <a class="sb-link leader" href="#leader-schedule"><span class="sb-dot sb-dot-leader"></span>日程を調整する</a>
-      <a class="sb-link leader" href="#leader-report"><span class="sb-dot sb-dot-leader"></span>結果を報告する</a>
-      <a class="sb-link leader" href="#leader-void"><span class="sb-dot sb-dot-leader"></span>試合を無効にする</a>
+      <div class="sb-group-title">チーム運営（リーダー）</div>
+      <a class="sb-link leader" href="#leader-keymember"><span class="sb-dot sb-dot-leader"></span>キープレイヤー・サブリーダー</a>
+    </div>
+    <div class="sb-group">
+      <div class="sb-group-title">試合運営（リーダー・サブリーダー）</div>
+      <a class="sb-link leader" href="#leader-entry"><span class="sb-dot sb-dot-sub"></span>ウィークリーに参加する</a>
+      <a class="sb-link leader" href="#leader-request"><span class="sb-dot sb-dot-sub"></span>レートマッチを申請する</a>
+      <a class="sb-link leader" href="#leader-schedule"><span class="sb-dot sb-dot-sub"></span>日程を調整する</a>
+      <a class="sb-link leader" href="#leader-report"><span class="sb-dot sb-dot-sub"></span>結果を報告する</a>
+      <a class="sb-link leader" href="#leader-void"><span class="sb-dot sb-dot-sub"></span>試合を無効にする</a>
     </div>
     <div class="sb-group">
       <div class="sb-group-title">メンバー向け</div>
@@ -252,9 +255,8 @@
     <div class="sb-group">
       <div class="sb-group-title">その他</div>
       <a class="sb-link" href="#permissions"><span class="sb-dot sb-dot-both"></span>権限の一覧</a>
-      <a class="sb-link" href="#rating"><span class="sb-dot sb-dot-both"></span>レートについて</a>
+      <a class="sb-link" href="#rating"><span class="sb-dot sb-dot-both"></span>レート・ポイントについて</a>
       <a class="sb-link" href="#feedback"><span class="sb-dot sb-dot-both"></span>今後の変更予定・ご意見</a>
-      <a class="sb-link" href="#terms"><span class="sb-dot sb-dot-both"></span>利用規約・プライバシーポリシー</a>
       <a class="sb-link" href="#terms"><span class="sb-dot sb-dot-both"></span>利用規約・プライバシーポリシー</a>
       <a class="sb-link" href="#faq"><span class="sb-dot sb-dot-both"></span>Q&amp;A</a>
     </div>
@@ -264,20 +266,19 @@
 
     <div class="hero">
       <div class="hero-eyebrow"><span class="hero-chip hero-chip-beta">β版</span></div>
-      <div class="hero-title">VMatch（仮） ユーザーマニュアル</div>
+      <div class="hero-title">VMATCH ユーザーマニュアル</div>
       <div class="hero-desc">バレーボールチームのマッチング・日程調整・スコア管理を行う Web サービスです。バレーボールチームのマッチング・日程調整・スコア管理を行う Web サービスです。レートマッチとウィークリーマッチの 2 種類のモードで対戦できます。</div>
     </div>
 
     <div class="role-legend">
-      <div class="role-tag role-tag-leader"><span>👑</span>リーダー向け</div>
-      <div class="role-tag role-tag-member"><span>👤</span>メンバー向け</div>
-      <div class="role-tag" style="background:#fef9c3;color:#92400e;border:2px solid #d97706;"><span>🔸</span>サブリーダーも可</div>
-      <div class="role-tag role-tag-rate"><span>⚡</span>レートマッチ限定</div>
+      <div class="role-tag role-tag-leader"><span>👑</span>リーダー</div>
+      <div class="role-tag" style="background:#fef9c3;color:#92400e;border:2px solid #d97706;"><span>🔸</span>サブリーダー</div>
+      <div class="role-tag role-tag-member"><span>👤</span>メンバー</div>
     </div>
 
     <!-- INTRO -->
-    <h2 id="intro">VMatch（仮）とは</h2>
-    <p class="section-intro">VMatch（仮）は、バレーボールチーム同士のマッチング・日程調整・スコア管理をまとめて行える Web サービスです。<strong>レートマッチ</strong>と<strong>ウィークリーマッチ</strong>の 2 種類のモードで対戦を楽しめます。</p>
+    <h2 id="intro">VMATCHとは</h2>
+    <p class="section-intro">VMATCHは、バレーボールチーム同士のマッチング・日程調整・スコア管理をまとめて行える Web サービスです。<strong>レートマッチ</strong>と<strong>ウィークリーマッチ</strong>の 2 種類のモードで対戦を楽しめます。</p>
     <div class="callout callout-warn">
       <div class="callout-icon">⚠️</div>
       <div class="callout-body">
@@ -289,7 +290,7 @@
     <!-- MODES -->
 
     <h2 id="modes">2つのモードについて</h2>
-    <p class="section-intro">VMatch には 2 種類のモードがあります。どちらのモードが現在開催中かはダッシュボードまたはナビで確認してください。</p>
+    <p class="section-intro">VMATCH には 2 種類のモードがあります。どちらのモードが現在開催中かはダッシュボードまたはナビで確認してください。</p>
 
     <table>
       <tr><th></th><th><span class="badge badge-rate">⚡ レートマッチ</span></th><th><span class="badge badge-normal">🏆 ウィークリーマッチ</span></th></tr>
@@ -329,7 +330,7 @@
             <div class="step-num step-num-both">1</div>
             <div class="step-content">
               <div class="step-title">サイトを開く</div>
-              <div class="step-desc">配布された VMatch の URL にブラウザでアクセスします。</div>
+              <div class="step-desc">配布された VMATCH の URL にブラウザでアクセスします。</div>
             </div>
           </div>
           <div class="step-item">
@@ -352,6 +353,13 @@
           <div class="callout-body">
             <strong>ユーザー名の変更</strong>
             ログイン後のダッシュボードの「✏️ ユーザー名を変更」からいつでも変更できます。
+          </div>
+        </div>
+        <div class="callout callout-warn">
+          <div class="callout-icon">🔒</div>
+          <div class="callout-body">
+            <strong>パスワードは使い回さないでください</strong>
+            VMATCH ではユーザー名に VRChat ID を推奨していますが、その分、<strong>パスワードは VRChat と絶対に同じものにしないでください。</strong>
           </div>
         </div>
       </div>
@@ -429,7 +437,7 @@
         <table>
           <tr><th>カード</th><th>移動先</th></tr>
           <tr><td>⚡ レートマッチ</td><td>レートマッチページ（申請・試合一覧）</td></tr>
-          <tr><td>🏆 ウィークリーマッチ</td><td>ウィークリーマッチページ（準備中）</td></tr>
+          <tr><td>🏆 ウィークリーマッチ</td><td>ウィークリーマッチページ</td></tr>
           <tr><td>🕐 予定入力</td><td>予定入力ページ（直近14日の入力状況も表示）</td></tr>
         </table>
       </div>
@@ -472,216 +480,80 @@
     </div>
 
     <!-- KEY PLAYER -->
-    <h2 id="leader-keymember"><span class="h2-badge">L</span>キープレイヤーを設定する</h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。チームメンバーに「キープレイヤー」を設定することで、<strong>日程候補の優先順位に影響</strong>します。チーム編集ページ（チーム詳細 →「チームを編集」）から設定できます。</p>
+    <h2 id="leader-keymember"><span class="badge badge-leader" style="font-size:12px; vertical-align:middle;">👑 リーダーのみ</span> キープレイヤーを設定する</h2>
+    <p class="section-intro">「キープレイヤー」を設定することで<strong>日程候補の優先順位に影響</strong>します。チーム詳細 →「チームを編集」から設定できます。<strong>サブリーダー</strong>や<strong>チームロゴ</strong>も同ページから設定可能です。</p>
     <div class="role-section role-section-leader">
-      <div class="role-header role-header-leader"><span>👑</span>リーダー — キープレイヤーを設定する</div>
+      <div class="role-header role-header-leader">キープレイヤーを設定する</div>
       <div class="role-body">
         <div class="steps">
-          <div class="step-item">
-            <div class="step-num step-num-leader">1</div>
-            <div class="step-content">
-              <div class="step-title">チーム詳細ページの「チームを編集」を開く</div>
-              <div class="step-desc">メンバー一覧にロール選択のドロップダウンが表示されます。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-leader">2</div>
-            <div class="step-content">
-              <div class="step-title">各メンバーのロールを設定する</div>
-              <div class="step-desc">選択すると即座に保存されます。
-                <table style="margin-top:8px;">
-                  <tr><th>ロール</th><th>意味</th></tr>
-                  <tr><td>⭐ キープレイヤー</td><td>絶対に参加してほしい主力メンバー（セッターなど）</td></tr>
-                  <tr><td>サブ</td><td>通常メンバー（デフォルト）</td></tr>
-                </table>
-              </div>
-            </div>
-          </div>
+          <div class="step-item"><div class="step-num step-num-leader">1</div><div class="step-content"><div class="step-title">チーム詳細の「チームを編集」を開く</div><div class="step-desc">メンバー一覧にロール選択のドロップダウンが表示されます。</div></div></div>
+          <div class="step-item"><div class="step-num step-num-leader">2</div><div class="step-content"><div class="step-title">各メンバーのロールを設定する</div><div class="step-desc">選択すると即座に保存されます。⭐キープレイヤー＝絶対に参加してほしい主力（セッター等）、サブ＝通常メンバー（デフォルト）。</div></div></div>
         </div>
-        <div class="callout callout-info">
-          <div class="callout-icon">⭐</div>
-          <div class="callout-body">
-            <strong>キープレイヤーが日程候補に与える影響</strong>
-            ① 最優先 — 両チーム 4 人以上 かつ 両チームのキープレイヤーが参加できるスロット<br>
-            ② 次点 — 両チーム 4 人以上だがキープレイヤーが揃わないスロット<br>
-            ③ 最低優先 — 参加人数が 4 人未満のスロット
-          </div>
-        </div>
-        <div class="callout callout-tip">
-          <div class="callout-icon">💡</div>
-          <div class="callout-body">
-            <strong>設定しない場合は？</strong>
-            誰もキープレイヤーに設定されていないチームは「全員キープレイヤー扱い」として候補が生成されます。
-          </div>
-        </div>
-        <div class="m-callout m-callout-tip"><div class="m-callout-icon">🖼️</div><div class="m-callout-body"><strong>チームロゴを設定する</strong>「チームを編集」ページの下部からチームロゴ画像をアップロードできます。対応形式は PNG / JPG / GIF / WebP（3MB以内）です。</div></div>
-
+        <div class="callout callout-info"><div class="callout-icon">⭐</div><div class="callout-body"><strong>日程候補への影響</strong>① 両チーム4人以上＋キープレイヤー揃い＝最優先、② 4人以上だがキープレイヤー不揃い＝次点、③ 4人未満＝最低優先。誰も設定しない場合は全員キープレイヤー扱いです。</div></div>
       </div>
     </div>
 
-    <!-- LEADER REQUEST (FREE ONLY) -->
-    <h2 id="leader-request"><span class="h2-badge">L</span>試合を申請する</h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。ダッシュボードから行います。</p>
-
+    <!-- WEEKLY ENTRY -->
+    <h2 id="leader-entry"><span class="badge badge-sub" style="font-size:12px; vertical-align:middle;">🔸 リーダー・サブリーダー</span> ウィークリーマッチに参加する</h2>
+    <p class="section-intro">ウィークリーマッチページ（🏆 ウィークリーマッチ）からエントリーします。</p>
     <div class="role-section role-section-leader">
-      <div class="role-header role-header-leader"><span>👑</span>リーダー — レートマッチを申請する（ダッシュボードから）</div>
+      <div class="role-header role-header-leader">エントリーする</div>
       <div class="role-body">
         <div class="steps">
-          <div class="step-item">
-            <div class="step-num step-num-free">1</div>
-            <div class="step-content">
-              <div class="step-title">ダッシュボードの「⚡ レートマッチ」エリアを確認する</div>
-              <div class="step-desc">申請中チーム数が表示されています。進行中のマッチがない場合に申請ボタンが表示されます。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-free">2</div>
-            <div class="step-content">
-              <div class="step-title">「🎯 試合を申請する」をクリック</div>
-              <div class="step-desc">申請完了後、「⏳ 相手チームを待っています...」と表示されます。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-free">3</div>
-            <div class="step-content">
-              <div class="step-title">自動マッチングを待つ</div>
-              <div class="step-desc">他に申請中のチームがいると<strong>先着でマッチング</strong>されます。Discord とアプリ内通知が届きます。</div>
-            </div>
-          </div>
+          <div class="step-item"><div class="step-num step-num-leader">1</div><div class="step-content"><div class="step-title">ウィークリーマッチページを開く</div><div class="step-desc">ナビまたはダッシュボードのクイックリンクからアクセスします。</div></div></div>
+          <div class="step-item"><div class="step-num step-num-leader">2</div><div class="step-content"><div class="step-title">「🏆 エントリーする」をクリック</div><div class="step-desc">エントリー後、隔週月曜のマッチングで対象に含まれます。<strong>途中参加は最下位と同ポイントからスタート</strong>します。</div></div></div>
         </div>
-        <div class="callout callout-warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <strong>申請をキャンセルするには</strong>
-            「キャンセル」ボタンで取り消せます。進行中のマッチがある間は新たに申請できません。
-          </div>
+        <div class="callout callout-info"><div class="callout-icon">ℹ️</div><div class="callout-body"><strong>リタイア・受付締切</strong>「リタイア申請」で途中退場でき（進行中マッチ消化後に確定・再エントリー可）、待機中はキャンセルも可能。受付締切後もエントリーできますが、締切前なら初回マッチングから参加できます。</div></div>
+      </div>
+    </div>
+
+    <!-- LEADER REQUEST -->
+    <h2 id="leader-request"><span class="badge badge-sub" style="font-size:12px; vertical-align:middle;">🔸 リーダー・サブリーダー</span> 試合を申請する</h2>
+    <p class="section-intro">レートマッチページ（⚡ レートマッチ）から操作します。</p>
+    <div class="role-section role-section-leader">
+      <div class="role-header role-header-leader">レートマッチを申請する</div>
+      <div class="role-body">
+        <div class="steps">
+          <div class="step-item"><div class="step-num step-num-leader">1</div><div class="step-content"><div class="step-title">「🎯 試合を申請する」をクリック</div><div class="step-desc">申請後「⏳ 相手チームを待っています...」と表示されます。「キャンセル」で取り消せます（進行中マッチがある間は新規申請不可）。</div></div></div>
+          <div class="step-item"><div class="step-num step-num-leader">2</div><div class="step-content"><div class="step-title">自動マッチングを待つ</div><div class="step-desc">他に申請中のチームがいると<strong>先着でマッチング</strong>され、Discord とアプリ内通知が届きます。</div></div></div>
         </div>
       </div>
     </div>
 
     <!-- LEADER SCHEDULE -->
-    <h2 id="leader-schedule"><span class="h2-badge">L</span>日程を調整する</h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。マッチング成立後、<strong>両チームのリーダーが協力</strong>して試合日時を確定します。マッチ詳細の「日程調整」から操作します。</p>
-
-    <div class="callout callout-info">
-      <div class="callout-icon">📊</div>
-      <div class="callout-body">
-        <strong>マッチ詳細のステータスバー</strong>
-        マッチ詳細ページ上部に現在の進行状況が表示されます。日程調整中・日程確定済み・結果報告待ち・報告内容不一致などが一目でわかります。
-      </div>
-    </div>
+    <h2 id="leader-schedule"><span class="badge badge-sub" style="font-size:12px; vertical-align:middle;">🔸 リーダー・サブリーダー</span> 日程を調整する</h2>
+    <p class="section-intro">マッチング成立後、<strong>両チームで協力</strong>して試合日時を確定します。マッチ詳細の「日程調整」から操作します。</p>
     <div class="role-section role-section-leader">
-      <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 日程を確定する</div>
+      <div class="role-header role-header-leader">日程を確定する</div>
       <div class="role-body">
         <div class="steps">
-          <div class="step-item">
-            <div class="step-num step-num-leader">1</div>
-            <div class="step-content">
-              <div class="step-title">「🔍 共通空き時間を検索」をクリック</div>
-              <div class="step-desc">両チームメンバーの予定から共通の空き時間を自動抽出し、前半（15日以内）・後半（16〜30日）に分けて候補リストが表示されます。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-leader">2</div>
-            <div class="step-content">
-              <div class="step-title">候補から 1 つを「この日程で承認」</div>
-              <div class="step-desc">どちらのリーダーが先に承認しても構いません。承認した日程が相手チームに通知されます。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-leader">3</div>
-            <div class="step-content">
-              <div class="step-title">相手リーダーも「この日程で承認」</div>
-              <div class="step-desc">相手チームのリーダーが同じ候補を承認すると<strong>日程が確定</strong>します。Discord と通知が届きます。</div>
-            </div>
-          </div>
+          <div class="step-item"><div class="step-num step-num-leader">1</div><div class="step-content"><div class="step-title">「🔍 共通空き時間を検索」をクリック</div><div class="step-desc">両チームの予定から共通の空き時間を自動抽出し、前半（15日以内）・後半（16〜30日）に分けて候補が出ます。</div></div></div>
+          <div class="step-item"><div class="step-num step-num-leader">2</div><div class="step-content"><div class="step-title">候補から1つを「この日程で承認」</div><div class="step-desc">どちらが先に承認してもOK。両チームが同じ候補を承認すると<strong>日程が確定</strong>し、通知が届きます。</div></div></div>
         </div>
-        <div class="callout callout-warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <strong>候補が表示されない場合</strong>
-            チームメンバーの予定入力が不十分な可能性があります。<a href="#availability">「予定を入力する」</a>セクションを確認して、全員に入力をお願いしてください。
-          </div>
-        </div>
+        <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div class="callout-body"><strong>候補が出ない場合</strong>メンバーの予定入力が不十分かもしれません。<a href="#availability">「予定を入力する」</a>を全員に促してください。マッチ詳細ページ上部のステータスバーで進行状況が確認できます。</div></div>
       </div>
     </div>
 
     <!-- LEADER REPORT -->
-    <h2 id="leader-report"><span class="h2-badge">L</span>結果を報告する</h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。試合終了後、<strong>両チームのリーダーが各自でスコアを報告</strong>します。マッチ詳細ページから操作します。</p>
+    <h2 id="leader-report"><span class="badge badge-sub" style="font-size:12px; vertical-align:middle;">🔸 リーダー・サブリーダー</span> 結果を報告する</h2>
+    <p class="section-intro">試合終了後、<strong>両チームが各自でスコアを報告</strong>します。マッチ詳細ページから操作します。</p>
     <div class="role-section role-section-leader">
-      <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 結果を報告する</div>
+      <div class="role-header role-header-leader">結果を報告する</div>
       <div class="role-body">
         <div class="steps">
-          <div class="step-item">
-            <div class="step-num step-num-leader">1</div>
-            <div class="step-content">
-              <div class="step-title">マッチ詳細ページを開く</div>
-              <div class="step-desc">ダッシュボードの進行中マッチからリンクをクリックします。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-leader">2</div>
-            <div class="step-content">
-              <div class="step-title">スコアを入力して「報告する」</div>
-              <div class="step-desc">「自チームの取得セット数」と「相手チームの取得セット数」を入力します。<br>例：自分が 2 セット取って勝った → 自チーム <strong>2</strong>、相手 <strong>0</strong> または <strong>1</strong></div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-leader">3</div>
-            <div class="step-content">
-              <div class="step-title">両チームの報告が一致したら自動確定・レート更新</div>
-              <div class="step-desc">両リーダーの報告が一致した瞬間にマッチが確定し、Elo レートが自動更新されます。</div>
-            </div>
-          </div>
-        </div>
-        <div class="callout callout-warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <strong>報告内容が食い違う場合</strong>
-            マッチ詳細のチャット機能で相手リーダーと話し合ってください。どちらのリーダーも「報告をリセット」してやり直せます。
-          </div>
+          <div class="step-item"><div class="step-num step-num-leader">1</div><div class="step-content"><div class="step-title">スコアを入力して「報告する」</div><div class="step-desc">自チーム・相手チームの取得セット数を入力します。例：2セット取って勝った→自チーム2、相手0または1。</div></div></div>
+          <div class="step-item"><div class="step-num step-num-leader">2</div><div class="step-content"><div class="step-title">両チームの報告一致で自動確定</div><div class="step-desc">報告が一致した瞬間に確定し、Elo レートが自動更新されます。食い違う場合はチャットで相談し、「報告をリセット」してやり直せます。</div></div></div>
         </div>
       </div>
     </div>
 
     <!-- VOID MATCH -->
-    <h2 id="leader-void"><span class="h2-badge">L</span>試合を無効にする</h2>
-    <p class="section-intro"><span class="badge badge-leader">👑 リーダーのみ</span> の操作です。試合が成立しなかった場合など、<strong>両チームのリーダーが合意すること</strong>で試合を無効にできます。マッチ詳細ページから操作します。</p>
+    <h2 id="leader-void"><span class="badge badge-sub" style="font-size:12px; vertical-align:middle;">🔸 リーダー・サブリーダー</span> 試合を無効にする</h2>
+    <p class="section-intro">試合不成立などの場合、<strong>両チームが合意</strong>すれば試合を無効にできます（レート変動なし）。マッチ詳細の「無効試合を申請する」を両チームが押すと確定します。</p>
     <div class="role-section role-section-leader">
-      <div class="role-header role-header-leader"><span>👑</span>両チームリーダー — 試合を無効にする</div>
+      <div class="role-header role-header-leader">試合を無効にする</div>
       <div class="role-body">
-        <div class="steps">
-          <div class="step-item">
-            <div class="step-num step-num-leader">1</div>
-            <div class="step-content">
-              <div class="step-title">マッチ詳細ページの「無効試合を申請する」をクリック</div>
-              <div class="step-desc">申請したチームの相手に「無効試合の申請が届いています」と通知が届きます。</div>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-num step-num-leader">2</div>
-            <div class="step-content">
-              <div class="step-title">相手チームのリーダーも同様に申請する</div>
-              <div class="step-desc">相手リーダーが同じく申請すると両者合意とみなされ<strong>マッチが無効に確定</strong>します。</div>
-            </div>
-          </div>
-        </div>
-        <div class="callout callout-info">
-          <div class="callout-icon">ℹ️</div>
-          <div class="callout-body">
-            <strong>無効試合はレート変動なし</strong>
-            無効が確定してもレートは一切変動しません。
-          </div>
-        </div>
-        <div class="callout callout-warn">
-          <div class="callout-icon">⚠️</div>
-          <div class="callout-body">
-            <strong>確定済みの試合は無効にできません</strong>
-            結果報告が両チーム一致して確定した後は無効申請できません。その場合は管理者にご連絡ください。
-          </div>
-        </div>
+        <div class="callout callout-warn"><div class="callout-icon">⚠️</div><div class="callout-body"><strong>確定済みは無効にできません</strong>結果報告が両チーム一致して確定した後は無効申請できません。その場合は管理者にご連絡ください。</div></div>
       </div>
     </div>
 
@@ -699,41 +571,7 @@
         </table>
       </div>
     </div>
-    <div class="role-section role-section-member">
-      <div class="role-header role-header-member"><span>👤</span>メンバーが「できないこと」</div>
-      <div class="role-body">
-        <table>
-          <tr><th>操作</th><th>できる人</th></tr>
-          <tr><td>レートマッチを申請・キャンセルする</td><td><span class="badge badge-sub">🔸 リーダー・サブリーダー</span></td></tr>
-          <tr><td>ウィークリーにエントリー・リタイアする</td><td><span class="badge badge-sub">🔸 リーダー・サブリーダー</span></td></tr>
-          <tr><td>日程候補を検索・承認する</td><td><span class="badge badge-sub">🔸 リーダー・サブリーダー</span></td></tr>
-          <tr><td>試合結果を報告・リセットする</td><td><span class="badge badge-sub">🔸 リーダー・サブリーダー</span></td></tr>
-          <tr><td>無効試合を申請する</td><td><span class="badge badge-sub">🔸 リーダー・サブリーダー</span></td></tr>
-          <tr><td>サブリーダーを設定する</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
-          <tr><td>キープレイヤー設定・チームロゴ</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
-          <tr><td>メンバー管理・招待コードの確認</td><td><span class="badge badge-leader">👑 リーダーのみ</span></td></tr>
-        </table>
-      </div>
-    </div>
 
-    <!-- TERMS -->
-    <h2 id="terms">利用規約・プライバシーポリシー</h2>
-    <p class="m-intro">ナビゲーションの「利用規約」（<code>/terms</code>）から確認できます。利用開始時点で規約に同意したものとみなされますので、必ずご一読ください。</p>
-    <div class="m-role-section m-role-section-both">
-      <div class="m-role-header m-role-header-both"><span>📜</span>主な規約内容</div>
-      <div class="m-role-body">
-        <table>
-          <tr><th>項目</th><th>内容</th></tr>
-          <tr><td>荒らし・不正行為</td><td>全面禁止。悪意ある行為には無視で対応</td></tr>
-          <tr><td>なりすまし・虚偽登録</td><td>禁止</td></tr>
-          <tr><td>談合・自作自演</td><td>対戦目的でないレート・ポイント操作は全面禁止</td></tr>
-          <tr><td>チームロゴ画像</td><td>自身が権利を持つもの、または使用許諾を得たもののみアップロード可</td></tr>
-          <tr><td>不適切なコンテンツ</td><td>宗教・アダルト等の青少年に悪影響を及ぼす表現・画像は禁止</td></tr>
-          <tr><td>規約違反への対応</td><td>機能制限・アカウント停止・アクセス拒否の場合あり</td></tr>
-        </table>
-        <div class="m-callout m-callout-info"><div class="m-callout-icon">ℹ️</div><div class="m-callout-body"><strong>免責事項</strong>当サービスは個人運営のため、24時間の稼働やサービスの継続を保証しません。生じたトラブル・データ消失・損害に対しても責任を負いません。</div></div>
-      </div>
-    </div>
     <!-- PERMISSIONS -->
     <h2 id="permissions">権限の一覧</h2>
     <p class="section-intro">リーダー・サブリーダー・メンバーでできることが異なります。</p>
@@ -823,7 +661,7 @@
 
         <!-- FEEDBACK -->
     <h2 id="feedback">今後の変更予定・ご意見</h2>
-    <p class="section-intro">VMatch（仮）はまだ開発途中です。以下の仕様については現在検討中であり、ユーザーの皆さんからのご意見をもとに決定していく予定です。そのほか使ってみて気になったことや要望があればぜひお聞かせください。</p>
+    <p class="section-intro">VMATCHはまだ開発途中です。以下の仕様については現在検討中であり、ユーザーの皆さんからのご意見をもとに決定していく予定です。そのほか使ってみて気になったことや要望があればぜひお聞かせください。</p>
 
     <div class="callout callout-info">
       <div class="callout-icon">💬</div>
@@ -841,11 +679,30 @@
         <td>実際に使いやすい日数・時間帯の範囲はどのくらいか</td>
       </tr>
       <tr>
-        <td><strong>シーズンモード</strong></td>
-        <td>両モード運用中（β版）</td>
-        <td>フリーマッチ・ウィークリーマッチ、どちらのモードが使いやすいか</td>
+        <td><strong>ウィークリーのマッチング頻度</strong></td>
+        <td>隔週月曜 0 時に自動マッチング</td>
+        <td>今の「隔週」のままでいいか、それとも毎週がいいか</td>
       </tr>
     </table>
+
+    <!-- TERMS -->
+    <h2 id="terms">利用規約・プライバシーポリシー</h2>
+    <p class="m-intro">ナビゲーションの「利用規約」（<code>/terms</code>）から確認できます。利用開始時点で規約に同意したものとみなされますので、必ずご一読ください。</p>
+    <div class="m-role-section m-role-section-both">
+      <div class="m-role-header m-role-header-both"><span>📜</span>主な規約内容</div>
+      <div class="m-role-body">
+        <table>
+          <tr><th>項目</th><th>内容</th></tr>
+          <tr><td>荒らし・不正行為</td><td>全面禁止。悪意ある行為には無視で対応</td></tr>
+          <tr><td>なりすまし・虚偽登録</td><td>禁止</td></tr>
+          <tr><td>談合・自作自演</td><td>対戦目的でないレート・ポイント操作は全面禁止</td></tr>
+          <tr><td>チームロゴ画像</td><td>自身が権利を持つもの、または使用許諾を得たもののみアップロード可</td></tr>
+          <tr><td>不適切なコンテンツ</td><td>宗教・アダルト等の青少年に悪影響を及ぼす表現・画像は禁止</td></tr>
+          <tr><td>規約違反への対応</td><td>機能制限・アカウント停止・アクセス拒否の場合あり</td></tr>
+        </table>
+        <div class="m-callout m-callout-info"><div class="m-callout-icon">ℹ️</div><div class="m-callout-body"><strong>免責事項</strong>当サービスは個人運営のため、24時間の稼働やサービスの継続を保証しません。生じたトラブル・データ消失・損害に対しても責任を負いません。</div></div>
+      </div>
+    </div>
 
     <!-- FAQ -->
     <h2 id="faq">Q&amp;A</h2>
@@ -869,7 +726,7 @@
     <p>チーム詳細ページの「チームを退団する」から退団できます。進行中のマッチがある場合は退団できないことがあります。</p>
 
     <h3>Q. パスワードを忘れた</h3>
-    <p>ログインページ下部の「パスワードをリセット」から再設定できます。</p>
+    <p>パスワードのリセットには管理者が発行するリセットコードが必要です。お手数ですが管理者（運営）にDM等でご連絡ください。リセットコードを受け取ったら、ログインページの「パスワードをリセット」からコードと新しいパスワードを入力して再設定できます。</p>
 
     <h3>Q. サイトを開くのに時間がかかる</h3>
     <p>サーバーがスリープしている場合、最初のアクセスに 30 秒〜1 分かかることがあります。しばらく待ってから再度アクセスしてください。これは正常な動作です。</p>
@@ -879,7 +736,7 @@
 </div>
 
 <footer>
-  <span>VMatch（仮） ユーザーマニュアル — レートマッチシーズン対応</span>
+  <span>VMATCH ユーザーマニュアル — レートマッチシーズン対応</span>
   <span>v27y</span>
 </footer>
 
